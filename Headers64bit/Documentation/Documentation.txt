@@ -1,0 +1,304 @@
+____________________AsmFun__Documentation_______________________
+
+			AsmFun module
+
+AsmFun is assembler functions for more convinient coding in nasm
+
+List of all functions and their purpose for you coding pleasure:
+
+1. _add0
+Purpose:
+	This function adds 0 code in ASCII [NULL] to the string pointer.
+	You will need to do this for _printText cause it counts the
+	string to that character.	
+Input: 
+	r9 as a pointer to memory
+Output:
+	String in r9 pointer is modified
+Dependency: 
+	If you want to use this function you have to put this line 
+	of code into the end of your nasm code:
+		%include "<Your_path_to_AsmFun>/Add0/main.asm"
+
+2. _addMinus
+Purpose:
+	This function adds "-" character (45 in ASCII) to the string pointer.
+Input:
+	r9 as a pointer to memory
+Output:
+	String in r9 pointer is modified, r9 is incremented
+Dependency:
+	Put this line of code into your nasm code:
+		%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
+
+3. _addNewLineCharacter
+Purpose:
+	This function add "\n" character (10 in ASCII) to the string pointer.
+Input:
+	r9 as a pointer to memory
+Output:
+	String in r9 pointer is modified
+Dependency:
+	Put this line of code into your nasm code:
+		%include "<Your_path_to_AsmFun>/AddNewLineCharacter/main.asm"
+
+4. _assignTempIntegerPortion
+Purpose:
+	Puts into temp string a integer portion of number
+	Note: temp string is going to be generated automatically
+Input:
+	rax as an integer, r8 as a pointer to temp, rcx as a divider(usually 10)
+Output:
+        rdx, rdx, r8, rax are modified
+Dependency:
+        Put this line of code into your nasm code:
+                %include "<Your_path_to_AsmFun>/AssignTempIntegerPortion/main.asm"
+
+5. _break
+Purpose:
+	Returns from the subroutine (your function)
+Input:
+	Nothing
+Output:
+	Nothing
+Dependency:
+	Put this line of code into your nasm code:
+		%include "<Your_path_to_AsmFun>/Break/main.asm"
+
+6. _flipTemp
+Purpose:
+	This function takes the content of temp string,
+	flips it and puts into the string pointer. Temp
+	string is created automatically. You don't have
+	to worry about that.
+Input:
+	r8 as a pointer to the end of the temp
+	r9 as a pointer to the start of the string 
+Output:
+	String in r9 pointer is modified
+Dependencies:
+	These lines of code are going to require those lines
+	in your nasm code:
+		%include "<Your_path_to_AsmFun>/FlipTemp/main.asm" - this you have to put right in
+	the end of your code
+		%include "<Your_path_to_AsmFun>/TempRes/main.asm" - this you're gonna wanna
+	put in the beginning of your nasm code
+
+7. _floatToString _____________TODO___________
+Purpose:
+	Converts floating point number into string and puts it to string pointer
+Input:
+	
+OutPut:
+
+Dependency:
+	  _____________TODO____________
+
+8. _getDebugString
+Purpose:
+	Generates string that contains info about all registers (their values I mean)
+Input:
+	You just leave registers as they are
+Output:
+	debugString string is going to be generated, you can use _printText or _printTextSafe to print it.
+	Your registers except r9 are safe! (The reason why r9 is not safe is that you mov
+	your string pointer into it)
+Dependencies:
+	Resourses (that means you have to pass these lines right in the beginning of
+	your code):
+		%include "<Your_path_to_AsmFun>/GetDebugStringRes/main.asm"
+		%include "<Your_path_to_AsmFun>/TempRes/main.asm"
+	Code (that means you gonna wanna put these lines in the end of your script):
+		%include "<Your_path_to_AsmFun>/GetDebugString/main.asm"	
+		%include "<Your_path_to_AsmFun>/FlipTemp/main.asm"
+		%include "<Your_path_to_AsmFun>/MinusCheck/main.asm"
+		%include "<Your_path_to_AsmFun>/AssignTempIntegerPortion/main.asm"
+		%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
+		%include "<Your_path_to_AsmFun>/Negate/main.asm"
+
+9. _getFloatingPortion _____________TODO___________
+Purpose:
+	Puts floating portion of the number into string pointer
+Input:
+
+OutPut:
+
+Dependency:
+	       _____________TODO____________
+
+10. _getTempIntegerPortion
+Purpose:
+	This function purpose is to take a integer number and put it
+	into a temp string pointer
+Input:
+	rax as integer number
+Output:
+	temp is modified
+Dependencies:
+	Resourses:
+		%include "<Your_path_to_AsmFun>/TempRes/main.asm"
+	Code:
+		%include "<Your_path_to_AsmFun>/GetTempIntegerPortion/main.asm"
+
+11. _inputText
+Purpose:
+	Puts the user's input into pointer to a string
+Input:
+	rsi as a pointer to string, rdx as a maximum amount of characters
+	in the string 
+OutPut:
+	String in rsi pointer is modified
+Dependency:
+	Code:
+		%include "<Your_path_to_AsmFun>/InputText/main.asm"	
+12. _intToString
+Purpose:
+	Converts integer value into string and puts it to a pointer to a string
+Input:
+	r9 as a pointer to a string
+	rax as an integer
+Output:	
+	String in r9 pointer is modified
+Dependencies:
+	Resourses:
+		%include "<Your_path_to_AsmFun>/TempRes/main.asm"
+	Code:
+		%include "<Your_path_to_AsmFun>/MinusCheck/main.asm"
+		%include "<Your_path_to_AsmFun>/GetTempIntegerPortion/main.asm"
+		%include "<Your_path_to_AsmFun>/FlipTemp/main.asm"
+		%include "<Your_path_to_AsmFun>/IntToString/main.asm"
+		%include "<Your_path_to_AsmFun>/Negate/main.asm"
+		%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
+		%include "<Your_path_to_AsmFun>/AssignTempIntegerPortion/main.asm"
+13. _minusCheck
+Purpose:
+	Defines whether integer is positive of negative and puts "-" character
+
+		%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
+		%include "<Your_path_to_AsmFun>/Negate/main.asm"		into string pointer if necessary
+	Input:
+		r9 as a pointer to a string 
+		rax as a integer
+	Output:	
+		String in r9 pointer is modified
+	Dependencies:	
+		Code:
+			%include "<Your_path_to_AsmFun>/MinusCheck/main.asm"
+			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
+			%include "<Your_path_to_AsmFun>/Negate/main.asm"
+
+14. _negate
+	Purpose:
+		Negates an integer
+	Input:
+		rax as an integer
+	Output:
+		rax modified
+	Dependency:
+		Code:
+			%include "<Your_path_to_AsmFun>/Negate/main.asm"
+
+15. _printText
+	Purpose:
+		Prints text from r9 pointer to a screen
+	Input:
+		r9 as a pointer to a string
+	Output:
+		Nothing
+	Dependency:	
+		Code:
+			%include "<Your_path_to_AsmFun>/PrintText/main.asm"
+
+16. _printTextSafe
+        Purpose:
+                Prints text from r9 pointer to a screen and saves all registers
+        Input:
+                r9 as a pointer to a string
+        Output: 
+                Nothing
+        Dependency:      
+                Code:
+                        %include "<Your_path_to_AsmFun>/PrintTextSafe/main.asm"
+
+17. _exit
+	Purpose:
+		Quits from a program. In C the equivalent is "return 0;"
+		meaning the program ended normally
+	Input:
+		Nothing
+	Output:
+		Nothing
+	Dependency:
+		Code:
+			%include "<Your_path_to_AsmFun>/StandardExit/main.asm"
+
+18. _strCapitalize
+	Purpose:
+                Puts capitalized letters into existing string
+        Input:
+                r9 as a pointer to a string
+        Output: 
+        	r9, rax are modified
+        Dependencies:      
+                Code:	
+                        %include "<Your_path_to_AsmFun>/StrCapitalize/main.asm"
+			%include "<Your_path_to_AsmFun>/Break/main.asm"
+
+19. _strLowercase
+        Purpose:
+                Puts lowercase letters into existing string
+        Input:
+                r9 as a pointer to a string
+        Output:
+                r9, rax are modified
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/StrLowercase/main.asm"
+                        %include "<Your_path_to_AsmFun>/Break/main.asm"
+
+20. _power
+	Purpose:
+		Raises integer to the power 
+	Input:
+		rax as an integer base and rcx as an integer exponent
+	Output:
+		rcx is 0, rax is raised to the power of rcx
+	Dependency:
+		Code:
+			%include "<Your_path_to_AsmFun>/Power/main.asm"
+
+21. _stringToInt
+	Purpose:
+                Takes integer from string and puts it into register
+        Input:
+                r9 as a pointer to string
+        Output:
+                rax, rdi, r8, r10, r11 are modified, rsi is integer from string
+        Dependency:
+                Code:
+                        %include "<Your_path_to_AsmFun>/StringToInt/main.asm"	
+			%include "<Your_path_to_AsmFun>/Break/main.asm"
+
+22. _factorial
+	Purpose:
+		Finds factorial of a number via cycle
+	Input:
+		rbx as an integer number
+	Output:
+		rax is factorial, rbx is 1 if it initially isn't 0
+	Dependencies:
+		Code:
+			%include "<Your_path_to_AsmFun>/Factorial/main.asm"	
+			%include "<Your_path_to_AsmFun>/Break/main.asm"
+
+23. _strLen
+	Purpose:
+		Finds the length of the string
+	Input:
+		r9 as a pointer to string
+	Output:
+		rcx is the length of the string, rax is modified
+	Dependencies:
+		Code:
+			%include "<Your_path_to_AsmFun>/StrLen/main.asm"
+			%include "<Your_path_to_AsmFun>/Break/main.asm"
