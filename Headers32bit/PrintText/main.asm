@@ -7,7 +7,7 @@ _printTextLoopPM:
 	mov al, [esi]
 	cmp al, 0
 	je _break
-	mov ah, 0x0f			; White on black style
+	mov ah, 0x07			; Gray on black style (like in bios, you know)
 	mov [edx], ax
 	inc esi
 	add edx, 2

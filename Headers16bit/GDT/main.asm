@@ -30,21 +30,6 @@ gdtData: 		; The data segment descriptor
 	db 10010010b	; 1st flags, type flags
 	db 11001111b 	; 2nd flags, Limit (bits 16-19)
 	db 0x0		; Base (bits 24-31)
-
-gdtCode16:
-	dw 0ffffh       ; Limit (bits 0 - 15)
-        dw 0x0          ; Base (bits 0 - 15)
-        db 0x0          ; Base (bits 16 - 23)
-        db 10010010b    ; 1st flags, type flags
-        db 00001111b    ; 2nd flags, Limit (bits 16-19)
-        db 0x0          ; Base (bits 24-31)	
-
-gdtData16:
-	dw 0ffffh       ; Limit (bits 0 - 15)
-        dw 0x0          ; Base (bits 0 - 15)
-        db 0x0          ; Base (bits 16 - 23)
-        db 10010010b    ; 1st flags, type flags
-        db 00001111b    ; 2nd flags, Limit (bits 16-19)
         db 0x0          ; Base (bits 24-31)
 	
 gdtEnd:

@@ -28,4 +28,4 @@ _initPM:
     	mov gs, ax
     	mov ebp , 0x90000
     	mov esp , ebp
-	jmp _beginPM		; Finally, call some well-known label
+	jmp KERNEL_OFFSET		; Finally, call some well-known label

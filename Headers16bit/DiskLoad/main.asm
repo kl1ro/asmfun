@@ -1,44 +1,31 @@
-bits 16
-;
-; Reads sectors from the disk
-; Parameters:
-; 	- ax as an Lba address
-;	- cl is amount of sectors to read (up to 128)
-; 	- dl is a drive number
-;	- es:bx: memory address where to store read data
-;
+; load ax sectors to ES : BX from drive DL
 _diskLoad:
-	mov si, cx
-	call _lbaToChs
-	mov ax, si	
-	mov ah, 02h
-	mov di, 3
-
-_diskLoadCycle:
 	mov si, ax
-	stc
-	int 13h
-	mov ax, si
-	jnc _break
-	call _diskReset
-	dec di
-	test di, di
-	jnz _diskLoadCycle
-	
-_diskLoadFailed:
-        mov si, diskLoadFailed
-        call _printText
-        jmp _waitForKeyAndReboot
+	; Store ax in si so later we can recall
+	; how many sectors were request to be read ,
+	; even if it is altered in the meantime
+	mov ah , 0x02
+	; BIOS read sector function
+	mov ch , 0x00
+	; Select cylinder 0
+	mov dh , 0x00
+	; Select head 0
+	mov cl , 0x02
+	; Start reading from second sector ( i.e.
+	; after the boot sector )
+	int 0x13
+	; BIOS interrupt
+	jc _diskLoadError	; Jump if error ( i.e. carry flag set )
+	and ax, 0xFF
+	mov di, ax
+	cmp si, di
+	jne _diskLoadError
+	ret
 
-;
-; Resets a disk controller
-; Parameters: dl as a drive number
-;
-_diskReset:
-	mov ah, 0
-	stc
-	int 13h
-	jc _diskLoadFailed
-	ret	
+;display error message
+_diskLoadError:
+	mov si, diskLoadFailed
+	call _printText
+	jmp _waitForKeyAndReboot
 
-
+%include "../../AsmFun/Headers16bit/DiskLoadRes/main.asm"
