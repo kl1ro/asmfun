@@ -1,6 +1,6 @@
 cli		; Disable interrupts
 
-; Clear some memory from paging
+; Setting up paging
 mov edi, 0x1000
 mov cr3, edi
 xor eax, eax
@@ -49,4 +49,4 @@ or eax, 0x80000001
 mov cr0, eax
 
 lgdt [GDTLM.Pointer]
-jmp GDTLM.Code:_startLM
+jmp GDTLM.Code:0x500
