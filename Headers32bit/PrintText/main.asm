@@ -1,5 +1,3 @@
-[bits 32]
-
 ; Prints a string pointed to by esi and edx to video memory
 _printTextPM:	
 
