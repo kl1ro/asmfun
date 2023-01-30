@@ -15,21 +15,20 @@ mov edi, 0x1000
 
 ; Filling
 mov dword [edi], 0x2003
-add edi, 0x1000
+shl edi, 1
 mov dword [edi], 0x3003
-add edi, 0x1000
+or edi, 0x1000
 mov dword [edi], 0x4003
 add edi, 0x1000
 
-mov dword ebx, 3
-mov ecx, 512
+mov ebx, 3
+mov ecx, 0x200
 
 .setEntry:
 	mov dword [edi], ebx
 	add ebx, 0x1000
 	add edi, 8
 	loop .setEntry
-
 
 ; Set 5th bit in control reg 4
 ; Meaning Paging is on
@@ -46,9 +45,8 @@ or eax, 1 << 8
 wrmsr
 
 mov eax, cr0
-or eax, 1 << 31
-or eax, 1 << 0
+or eax, 0x80000001
 mov cr0, eax
-hlt
+
 lgdt [GDTLM.Pointer]
 jmp GDTLM.Code:_startLM
