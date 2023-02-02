@@ -19,11 +19,18 @@ _diskLoad:
 	and ax, 0xFF
 	mov di, ax
 	cmp si, di
-	jne _diskLoadError
+	jne _diskMismatch
 	ret
 
 ;display error message
 _diskLoadError:
+	mov si, diskLoadFailed
+	call _printText
+	jmp _waitForKeyAndReboot
+
+_diskMismatch:
+	mov si, diskLoadMismatch
+	call _printText
 	mov si, diskLoadFailed
 	call _printText
 	jmp _waitForKeyAndReboot
