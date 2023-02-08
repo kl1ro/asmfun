@@ -1,17 +1,36 @@
-; Input - r9 as a pointer to string
-_printText:
+;
+; Print a text string
+;
+; Input:
+;	- rsi as a pointer to
+;	a source string
+;
+; Output:
+;	- rax equals to length of the string
+;
+;	- rcx is modified
+;
+;       - rdx equals to length of the string
+;
+;       - rsi is modified
+;
+;	- rdi is modified
+;
+;       - r11 is modified
+;
+_print:
         xor rdi, rdi
-	mov rax, r9
+	mov rax, rsi
 
 _stringCountLoop:
-        inc r9
+        inc rsi
         inc rdi
-        mov cl, [r9]
+        mov cl, [rsi]
         cmp cl, 0
         jne _stringCountLoop
 	mov rsi, rax
         mov rax, 1
 	mov rdx, rdi
         mov rdi, 1
-        syscall
+	syscall
         ret

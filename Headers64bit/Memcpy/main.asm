@@ -4,14 +4,14 @@
 ; destination
 ;
 ; Input:
-;	r8 is a pointer to source
-; 	r9 is a pointer to the destination
+;	rsi is a pointer to source
+; 	rdi is a pointer to the destination
 ;	rcx is amount of bytes to copy
 ;
 _memcpy:
-	mov al, [r8]
-	mov [r9], al
-	inc r9
-	inc r8
+	mov al, [rsi]
+	mov [rdi], al
+	inc rsi
+	inc rdi
 	loop _memcpy
 	ret

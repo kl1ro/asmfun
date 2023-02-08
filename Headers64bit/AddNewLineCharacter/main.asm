@@ -1,6 +1,18 @@
-; input - r9 as a pointer to the memory
+;
+; Adds \n character to the memory
+;
+; Input:
+;	rdi as a pointer to the memory
+;
+; Output:
+;	bl equals to 10
+;
+; 	string is modified 
+;
+;	rdi is incremented
+; 	
 _addNewLineCharacter:
-	mov rsi, 10
-        mov [r9], si
-	inc r9
+	mov bl, 10
+        mov [rdi], bl
+	inc rdi
         ret

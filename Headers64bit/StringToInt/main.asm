@@ -1,12 +1,46 @@
-; input - r9 as pointer to string
+;
+; Converts string value of number
+; to decimal integer value
+;
+; Input: 
+;	- rsi as pointer to string
+;
 _stringToInt:
-	mov rcx, 0
-	xor r8, r8
-	call _stringToIntCycle
-	jmp _stringToIntNext
+	;
+	; cl counts number of characters
+	;
+	xor cl, cl
+	
+	;
+	; dil shows if number is negative
+	;
+	xor dil, dil
+		
+	;
+	; r8 is a multiplier
+	;
+	mov r8, 10
+	
+	;
+	; r9 stores the product
+	;
+	mov r9, 1
+	
+	;
+	; rbx stores the answer
+	;
+	xor rbx, rbx
+	
+	;
+	; rdx needs to be cleared
+	;
+	xor rdx, rdx
+	
+	call _stringToIntCycle1
+	jmp _stringToIntCycle2
 
-_stringToIntCycle:
-        mov al, [r9]
+_stringToIntCycle1:
+        mov al, [rsi]
 	cmp al, 32
 	je _break	
 	cmp al, 45
@@ -16,59 +50,41 @@ _stringToIntCycle:
         cmp al, 0
         je _break
         cmp al, 48
-        jl _stringToIntCycle
+        jl _stringToIntCycle1
         cmp al, 57
-        ja _stringToIntCycle
-	inc rcx
-	inc r9
-	jmp _stringToIntCycle
+        ja _stringToIntCycle1
+	inc cl
+	inc rsi
+	jmp _stringToIntCycle1
 
 _stringToIntMinus:
-	inc r9
-	cmp r8, 0
-	je _stringToIntAddMinus
-	jne _stringToIntRemoveMinus
+	inc rsi
+	test dil, dil
+	jz _stringToIntAddMinus
+	jnz _stringToIntRemoveMinus
 
 _stringToIntAddMinus:
-	inc r8
-	jmp _stringToIntCycle
+	inc dil
+	jmp _stringToIntCycle1
 
 _stringToIntRemoveMinus:
-	dec r8
-	jmp _stringToIntCycle
+	dec dil
+	jmp _stringToIntCycle1
 
-_stringToIntNext:
-	dec r9
-	dec rcx
-	xor rsi, rsi
-	xor rdx, rdx
-	mov sil, [r9]
-	sub rsi, 48
-	mov r10, 10
-	mov r11, 10
-	cmp rcx, 0
-	jne _stringToIntSecondCycle
-	mov rax, rsi
-	cmp r8, 1
-	je _negate
-	ret		
-
-_stringToIntSecondCycle:
-	dec r9 
-	mov rax, r10
-	mov dil, [r9]
-	sub dil, 48
-	mul edi
-	add rsi, rax
-	mov rax, r10
-	mul r11d
-	mov r10, rax
-	dec rcx
-	cmp rcx, 0
-	jne _stringToIntSecondCycle
-	mov rax, rsi
-	cmp r8, 1	
-	je _negate
+_stringToIntCycle2:
+	dec rsi	
+	dec cl
+	mov dl, [rsi]
+	mov rax, rdx
+	sub al, 48
+	mul r9
+	add rbx, rax	
+	mov rax, r9
+	mul r8
+	mov r9, rax
+	cmp cl, 0
+	jne _stringToIntCycle2
+	mov rax, rbx
+	test dil, dil
+	jnz _negate
 	ret
-	
-

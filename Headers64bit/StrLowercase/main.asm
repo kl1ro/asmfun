@@ -1,6 +1,20 @@
-; Input - r9 as a pointer to string
+;
+; Changes all characters in the string
+; to lowercase
+;
+; Input:
+;	- rsi as a pointer to string
+;
+; Output:
+;	- al is modified
+;
+;	- rsi points to the end of the
+;	string
+;
+;	- string is modified
+;
 _strLowercase:
-	mov al, [r9]
+	mov al, [rsi]
 	cmp al, 0
 	je _break
 	cmp al, 65
@@ -8,9 +22,9 @@ _strLowercase:
 	cmp al, 90
 	ja _nextStrLowercase
 	or al, 020h
-	mov [r9], al
+	mov [rsi], al
 	jmp _nextStrLowercase
 	
 _nextStrLowercase:
-	inc r9
+	inc rsi
 	jmp _strLowercase

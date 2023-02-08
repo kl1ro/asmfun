@@ -1,6 +1,18 @@
-; input - r9 as a point to string
+;
+; Adds a "-" character to the memory
+;
+; Input:
+;	- rdi as a point to a string
+;
+; Output:
+;	- bl equals to 45
+;
+;	- string is modified
+;
+;	- rdi is incremented
+;	
 _addMinus:
-	mov r11, 45
-	mov [r9], r11b
-	inc r9
+	mov bl, 45
+	mov [rdi], bl
+	inc rdi
 	ret

@@ -1,6 +1,20 @@
-; Input - r9 as a pointer to string
+;
+; Changes all letters in the string
+; to uppercase
+;
+; Input:
+;	- rsi as a pointer to string
+;
+; Output:
+;	- al is modified
+;
+;	- rsi points to the
+;	end of the string 
+;
+;	- string is modified
+;
 _strCapitalize:
-	mov al, [r9]
+	mov al, [rsi]
 	cmp al, 0
 	je _break
 	cmp al, 97
@@ -8,9 +22,9 @@ _strCapitalize:
 	cmp al, 122
 	ja _nextStrCapitalize
 	and al, 0DFh 
-	mov [r9], al
+	mov [rsi], al
 	jmp _nextStrCapitalize
 	
 _nextStrCapitalize:
-	inc r9
+	inc rsi
 	jmp _strCapitalize
