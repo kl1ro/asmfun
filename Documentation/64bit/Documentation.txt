@@ -2,9 +2,9 @@ ____________________AsmFun__Documentation_______________________
 
 			AsmFun module
 
-AsmFun is assembler functions for more convinient coding in nasm
+AsmFun is the assembler functions for more convinient coding in nasm
 
-List of all functions and their purpose for you coding pleasure:
+Here's the list of all functions and their purpose for your coding pleasure:
 
 1. _add0
 
