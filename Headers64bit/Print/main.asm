@@ -14,7 +14,7 @@
 ;
 ;       - rsi is modified
 ;
-;	- rdi is modified
+;	- rdi equals to 1
 ;
 ;       - r11 is modified
 ;

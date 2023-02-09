@@ -18,7 +18,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 	Output:
 		- String in rdi pointer is modified
-		al is modified
+		- al is modified
 
 	Dependency: 
 		If you want to use this function you have to put this line 
@@ -196,32 +196,50 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependency:
 	       _____________TODO____________
 
-11. _inputText
+11. _input
 	Purpose:
 		Puts the user's input into pointer to a string
 
 	Input:
-		rsi as a pointer to string, rdx as a maximum amount of characters
-		in the string 
+		- rsi as a pointer to memory
+
+		- rdx as a maximum amount of characters in a string
 
 	Output:
-		String in rsi pointer is modified
+		- String being pointed by rsi is modified
+
+		- rax equals to the length of a string with \0 character
+
+		- rcx is modified
+
+		- rdx remains the same
+
+		- rsi is modified
+	
+		- r11 is modified
 
 	Dependency:
 	
 		Code:
-			%include "<Your_path_to_AsmFun>/InputText/main.asm"	
+			%include "<Your_path_to_AsmFun>/Input/main.asm"	
 
 12. _intToString
 	Purpose:
 		Converts integer value into string and puts it to a pointer to a string
 
 	Input:
-		r9 as a pointer to a string
-		rax as an integer
+		- rax as an integer
+	
+		- rdi as a pointer to destination string
 
 	Output:	
-		String in r9 pointer is modified
+		- rdx is modified
+
+		- rsi is modified
+
+		- rdi is modified
+
+		- r8 is modified
 
 	Dependencies:
 		Resourses:
@@ -229,24 +247,29 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 		Code:
 			%include "<Your_path_to_AsmFun>/MinusCheck/main.asm"
-			%include "<Your_path_to_AsmFun>/GetTempIntegerPortion/main.asm"
-			%include "<Your_path_to_AsmFun>/FlipTemp/main.asm"
+			%include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
+			%include "<Your_path_to_AsmFun>/FlipString/main.asm"
 			%include "<Your_path_to_AsmFun>/IntToString/main.asm"
 			%include "<Your_path_to_AsmFun>/Negate/main.asm"
 			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
-			%include "<Your_path_to_AsmFun>/AssignTempIntegerPortion/main.asm"
+			%include "<Your_path_to_AsmFun>/Memclr/main.asm"
 
 13. _minusCheck
 	Purpose:
-		Defines whether integer is positive of negative and puts "-" character
+		Defines whether integer is positive or negative and puts "-" character
 		into string pointer if necessary
 	
 	Input:
-		r9 as a pointer to a string 
-		rax as a integer
+		- rax as an integer
+
+		- rdi as a pointer to the destination string
 	
 	Output:	
-		String in r9 pointer is modified
+		- bl equals to 45 if rax is negative else remains the same
+
+		- string is modified if rax is negative
+
+		- rdi is incremented if "-" was written to a string
 	
 	Dependencies:	
 		Code:
@@ -256,13 +279,13 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 14. _negate
 	Purpose:
-		Negates an integer
+		Negates the number being in rax
 
 	Input:
-		rax as an integer
+		- rax as an integer
 
 	Output:
-		rax modified
+		- rax is negated
 
 	Dependency:
 		Code:
@@ -270,31 +293,41 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 15. _print
 	Purpose:
-		Prints text from r9 pointer to a screen
+		Print a text string to the screen
 
 	Input:
-		r9 as a pointer to a string
+		- rsi as a pointer to a source string
 
 	Output:
-		Nothing
+		- rax equals to the length of a string
+
+		- rcx is modified 
+	
+		- rdx equals to the length of a string
+	
+		- rsi is modified
+
+		- rdi equals to 1
+	
+		- r11 is modified
 
 	Dependency:	
 		Code:
-			%include "<Your_path_to_AsmFun>/PrintText/main.asm"
+			%include "<Your_path_to_AsmFun>/Print/main.asm"
 
 16. _printSafe
         Purpose:
-                Prints text from r9 pointer to a screen and saves all registers
+                Print a text string with saving all registers
         
 	Input:
-                r9 as a pointer to a string
+        	- rsi as a pointer to string        
        
-	 Output: 
-                Nothing
+	Output: 
+                - everything remains the same but string is printer
         
 	Dependency:      
                 Code:
-                        %include "<Your_path_to_AsmFun>/PrintTextSafe/main.asm"
+                        %include "<Your_path_to_AsmFun>/PrintSafe/main.asm"
 
 17. _exit
 	Purpose:
@@ -302,10 +335,10 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		meaning the program ended normally
 	
 	Input:
-		Nothing
+		- nothing
 	
 	Output:
-		Nothing
+		- nothing but program is terminated
 	
 	Dependency:
 		Code:
@@ -346,10 +379,16 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		Raises integer to the power 
 	
 	Input:
-		rax as an integer base and rcx as an integer exponent
+		- rax as an integer
+
+		- rcx as an integer exponential
 	
 	Output:
-		rcx is 0, rax is raised to the power of rcx
+		- rbx equals to rax before function start
+
+		- rax is raised to the power of rcx
+
+		- rcx equals to 0
 	
 	Dependency:
 		Code:
@@ -411,8 +450,51 @@ Here's the list of all functions and their purpose for your coding pleasure:
                 - nothing
 
         Output:
-		- if a system commits function stops the machine
+		- if a system commits this function it stops the computer
+		(I used this function in my os, in Linux is doesn't work)
 	
         Dependencies:
                 Code:
                         %include "<Your_path_to_AsmFun>/HaltMachine/main.asm"
+
+25. _memclr
+        Purpose:
+                Puts zeros into memory
+
+        Input:
+                - rdi as a pointer to memory
+
+		- rcx as amount of bytes to clear
+
+        Output:
+                - al equals to 0
+
+		- rdi points to the memory + rcx
+
+		- rcx remains the same
+
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/Memclr/main.asm"
+
+26. _memcpy
+        Purpose:
+                Loads memory from the source to the destination
+
+        Input:
+                - rsi is a pointer to source
+
+		- rdi is a pointer to the destination
+
+		- rcx is amount of bytes to copy
+
+        Output:
+                - al is modified
+
+		- rsi points to the rsi + rcx
+
+		- rdi points to the rdi + rcx
+
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/Memcpy/main.asm"

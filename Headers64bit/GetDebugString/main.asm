@@ -46,16 +46,7 @@ _getDebugString:
 	mov r10, rdi
 	add rdi, 6
 	mov r11, rdi
-	call _minusCheck
-	mov rdi, temp
-	mov rbx, 10
-	call _assignFlippedIntegerPortion
-	mov rsi, temp	
-	mov rdi, r11
-	call _flipString	
-	mov rdi, temp
-	mov rcx, 5
-	call _clearTemp
+	call _intToString
 	mov rcx, 13
 	add r10, 19	
 
@@ -63,17 +54,9 @@ _debugCycle:
 	pop rax    
 	mov rdi, r10	
 	mov r11, rdi
-        call _minusCheck
-	mov rdi, temp
-        call _assignFlippedIntegerPortion
-	mov rsi, temp
-	mov rdi, r11
-        call _flipString
-	mov rdi, temp
-	mov r8, rcx
-	mov rcx, 5
-	call _clearTemp
-	mov rcx, r8
+	mov r9, rcx
+        call _intToString
+	mov rcx, r9
 	add r10, 13
 	loop _debugCycle
 	

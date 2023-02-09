@@ -1,13 +1,16 @@
 ;
-; Puts zeros to the memory
+; Puts zeros into memory
 ;
 ; Input:
 ;	- rdi as a pointer to memory
 ;	- rcx as amount of bytes to clear
 ;
 ; Output:
+;	- al equals to 0
 ;
+;	- rdi points to the memory + rcx
 ;
+;	- rcx remains the same
 ;
 _memclr:
         mov al, 0

@@ -4,14 +4,14 @@
 ; and adds "-" character to a given string
 ;
 ; Input:
-; 	- rax as integer
+; 	- rax as an integer
 ;
 ; 	- rdi as a pointer to the 
 ;	destination string
 ;	
 ;
 ; Output:
-;       - r15b equals to 45 
+;       - bl equals to 45 
 ;	if rax is negative
 ;
 ;       - string is modified
