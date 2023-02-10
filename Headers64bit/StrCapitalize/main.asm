@@ -3,7 +3,7 @@
 ; to uppercase
 ;
 ; Input:
-;	- rsi as a pointer to string
+;	- rsi as a pointer to a string
 ;
 ; Output:
 ;	- al is modified

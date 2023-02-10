@@ -43,21 +43,19 @@ _getDebugString:
 	; Form a debug string
 	;
 	mov rdi, debugString
-	mov r10, rdi
 	add rdi, 6
-	mov r11, rdi
+	mov r9, rdi
 	call _intToString
 	mov rcx, 13
-	add r10, 19	
+	add r9, 20	
 
 _debugCycle:
 	pop rax    
-	mov rdi, r10	
-	mov r11, rdi
-	mov r9, rcx
+	mov rdi, r9	
+	mov r10, rcx
         call _intToString
-	mov rcx, r9
-	add r10, 13
+	mov rcx, r10
+	add r9, 21
 	loop _debugCycle
 	
 	;

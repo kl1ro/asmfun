@@ -18,6 +18,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 	Output:
 		- String in rdi pointer is modified
+
 		- al is modified
 
 	Dependency: 
@@ -196,6 +197,28 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependency:
 	       _____________TODO____________
 
+10. _memcpyd
+        Purpose:
+                Loads memory from the source to the destination
+
+        Input:
+                - rsi is a pointer to source
+
+                - rdi is a pointer to the destination
+
+                - rcx is amount of double words to copy
+
+        Output:
+                - rax is modified
+
+                - rsi points to the rsi + rcx
+
+                - rdi points to the rdi + rcx
+
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/Memcpyd/main.asm"
+
 11. _input
 	Purpose:
 		Puts the user's input into pointer to a string
@@ -233,6 +256,8 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		- rdi as a pointer to destination string
 
 	Output:	
+		- rcx is modified
+		
 		- rdx is modified
 
 		- rsi is modified
@@ -346,13 +371,17 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 18. _strCapitalize
 	Purpose:
-                Puts capitalized letters into existing string
+                Changes all the letters in a string to uppercase
         
 	Input:
-                r9 as a pointer to a string
+                - rsi as a pointer to a string
         
 	Output: 
-        	r9, rax are modified
+        	- al is modified
+
+		- rsi points to the end of the string
+
+		- string is modified if there is at least a one letter
         
 	Dependencies:      
                 Code:	
@@ -361,13 +390,17 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 19. _strLowercase
         Purpose:
-                Puts lowercase letters into existing string
+                Changes all characters in the string to lowercase
         
 	Input:
-                r9 as a pointer to a string
+                - rsi as a pointer to a string
         
 	Output:
-                r9, rax are modified
+                - al is modified
+
+		- rsi points to the end of the string
+
+		- string is modified if there is at least one letter
         
 	Dependencies:
                 Code:
@@ -399,10 +432,20 @@ Here's the list of all functions and their purpose for your coding pleasure:
                 Takes integer from string and puts it into register
         
 	Input:
-                r9 as a pointer to string
+                - rsi as a pointer to string
         
 	Output:
-                rax, rdi, r8, r10, r11 are modified, rsi is integer from string
+                - rbx is a number being recieved from a string
+
+		- dil equals to 1 if a number is negative else 0
+
+		- cl equals to number of digits in a number
+
+		- r8 equals to 10
+	
+		- r9 is modified
+
+		- rdx is modified
         
 	Dependency:
                 Code:
@@ -426,16 +469,21 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		Code:
 			%include "<Your_path_to_AsmFun>/Factorial/main.asm"	
 			%include "<Your_path_to_AsmFun>/Break/main.asm"
+			%include "<Your_path_to_AsmFun>/Negate/main.asm"
 
 23. _strLen
 	Purpose:
-		Finds the length of the string
+		Finds the length of the string except \0 and \n
 	
 	Input:
-		r9 as a pointer to string
+		- rsi as a pointer to a string
 	
 	Output:
-		rcx is the length of the string, rax is modified
+		- rcx equals to the length of the string
+	
+		- al is modified
+
+		- rsi points to the end of the string
 	
 	Dependencies:
 		Code:
@@ -477,7 +525,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
                 Code:
                         %include "<Your_path_to_AsmFun>/Memclr/main.asm"
 
-26. _memcpy
+26. _memcpyb
         Purpose:
                 Loads memory from the source to the destination
 
@@ -497,4 +545,26 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
         Dependencies:
                 Code:
-                        %include "<Your_path_to_AsmFun>/Memcpy/main.asm"
+                        %include "<Your_path_to_AsmFun>/Memcpyb/main.asm"
+
+27. _memcpyw
+        Purpose:
+                Loads memory from the source to the destination
+
+        Input:
+                - rsi is a pointer to source
+
+                - rdi is a pointer to the destination
+
+                - rcx is amount of words to copy
+
+        Output:
+                - rax is modified
+
+                - rsi points to the rsi + rcx
+
+                - rdi points to the rdi + rcx
+
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/Memcpyd/main.asm"

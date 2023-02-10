@@ -14,7 +14,7 @@ _factorial:
         mov rax, 1
         cmp rbx, 0
         je _break
-	jl _factorialError
+	jl _negate
 
 _factorialCycle:
         mul ebx
@@ -22,7 +22,3 @@ _factorialCycle:
         cmp rbx, 1
         jne _factorialCycle
         ret
-
-_factorialError:
-	mov rax, -1
-	ret

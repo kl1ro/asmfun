@@ -1,5 +1,5 @@
 ;
-; Counts length of the string except \0, and \n
+; Counts length of the string except \0 and \n
 ;
 ; Input:
 ;	- rsi as a pointer to string

@@ -3,7 +3,8 @@
 ; flipped integer portion of a number in rax. Serves 
 ; for the function _intToString. It also
 ; can be used for number systems conversion if 
-; you want it to.
+; you want it to. In order to flip the reseived from this
+; function string use _flipString (check the 64-bit documentation).
 ;
 ; Input:
 ; 	- rax as an integer 
@@ -21,7 +22,7 @@
 ;
 ; 	- rax equals to 0
 ;
-;	- string being pointed 
+;	- string being pointed to
 ; 	by rdi is modified
 ;
 ;	- rbx remains the same

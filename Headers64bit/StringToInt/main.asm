@@ -5,6 +5,21 @@
 ; Input: 
 ;	- rsi as pointer to string
 ;
+; Output:
+;	- rbx is a number received from string
+;
+;	- dil equals to 1 if number is negative
+;	else 0
+;
+;	- cl equals to number of digits
+;	in number
+;
+; 	- r8 equals to 10
+;
+;	- r9 is modified
+;
+;	- rdx is modified
+;
 _stringToInt:
 	;
 	; cl counts number of characters
@@ -40,6 +55,13 @@ _stringToInt:
 	jmp _stringToIntCycle2
 
 _stringToIntCycle1:
+	;	
+	; First we need to calculate the 
+	; length of a string except \0, \n, 
+	; \32 (which is space). In other words we 
+	; need to calculate the length of a string
+	; that contains only digits.
+	;
         mov al, [rsi]
 	cmp al, 32
 	je _break	
@@ -55,6 +77,11 @@ _stringToIntCycle1:
         ja _stringToIntCycle1
 	inc cl
 	inc rsi
+	
+	;
+	; Now rsi is presumed to contain
+	; a pointer to \0 of a string
+	;
 	jmp _stringToIntCycle1
 
 _stringToIntMinus:

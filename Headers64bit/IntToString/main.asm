@@ -7,6 +7,8 @@
 ;	- rdi as a pointer to destination string
 ;
 ; Output:
+;	- rcx is modified
+;
 ;	- rdx is modified
 ;
 ;	- rsi is modified

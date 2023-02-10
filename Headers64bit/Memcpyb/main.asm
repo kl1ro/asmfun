@@ -15,10 +15,10 @@
 ;
 ;	- rdi points to the rdi + rcx
 ;
-_memcpy:
+_memcpyb:
 	mov al, [rsi]
 	mov [rdi], al
 	inc rsi
 	inc rdi
-	loop _memcpy
+	loop _memcpyb
 	ret
