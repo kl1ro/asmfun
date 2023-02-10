@@ -1,4 +1,17 @@
-; load ax sectors to ES : BX from drive DL
+;
+; Loads ax sectors to ES : BX from drive DL
+;
+; Output:
+; 	- ah is modified
+;
+;	- cx is modified
+;
+;	- si is modified
+;
+;	- dh is modified
+;
+;	- di is modified
+;
 _diskLoad:
 	mov si, ax
 	; Store ax in si so later we can recall

@@ -1,6 +1,19 @@
 bits 16
 
-; Input: bh is a current page
+;
+; Puts the cursor on the screen to
+; the next line
+;
+; Input: 
+;	- dh is a current page
+;
+; Output:
+;	- ah equals to 02h
+;
+;	- dl equals to 0
+;
+;	- dh is incremented
+;
 _newLine:	
 	mov ah, 03h
 	int 10h
