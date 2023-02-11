@@ -166,8 +166,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 	Output:
 		Debug string is going to be printed on the screen. All of your registers
-		except rsi are safe (the reason why rsi is not safe is that we put there 
-		a point to the string being printed).
+		are safe!
 
 	Dependencies:
 		Resourses (that means you have to pass these lines right in the beginning of

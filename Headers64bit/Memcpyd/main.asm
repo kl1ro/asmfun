@@ -4,9 +4,11 @@
 ; destination
 ;
 ; Input:
-;       rsi is a pointer to source
-;       rdi is a pointer to the destination
-;       rcx is amount of double words to copy
+;       - rsi is a pointer to source
+;
+;       - rdi is a pointer to the destination
+;
+;       - rcx is amount of double words to copy
 ;
 ; Output:
 ;       - rax is modified

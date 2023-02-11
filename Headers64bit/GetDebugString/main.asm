@@ -5,7 +5,9 @@
 ;	- all registers
 ;
 ; Output:
-; 	- rsi points to the debug string
+; 	- all registers saved and 
+;	their values are printed to
+;	the screen
 ;
 _getDebugString:
 	;
@@ -42,12 +44,11 @@ _getDebugString:
 	;
 	; Form a debug string
 	;
-	mov rdi, debugString
-	add rdi, 6
+	mov rdi, debugString + 6
 	mov r9, rdi
 	call _intToString
 	mov rcx, 13
-	add r9, 20	
+	add r9, 27	
 
 _debugCycle:
 	pop rax    
@@ -55,8 +56,25 @@ _debugCycle:
 	mov r10, rcx
         call _intToString
 	mov rcx, r10
-	add r9, 21
+	add r9, 27
 	loop _debugCycle
+	
+	;
+        ; Print the debug string
+        ;
+        mov rsi, debugString
+        call _print
+	
+	mov rdi, debugString + 5
+	mov rcx, 14
+	mov rax, 0x2020202020202020
+
+_debugStringClearCycle:
+	mov [rdi], rax
+	add rdi, 8
+	mov [rdi], rax
+	add rdi, 19
+	loop _debugStringClearCycle
 	
 	;
 	; Restore all registers
@@ -75,9 +93,4 @@ _debugCycle:
 	pop r13
 	pop r14
 	pop r15
-	;
-        ; Print the debug string
-        ;
-        mov rsi, debugString
-        call _printSafe
 	ret

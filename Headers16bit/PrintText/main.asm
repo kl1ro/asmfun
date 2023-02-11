@@ -7,4 +7,4 @@ _printCycle:
         or al, al
         jz _break                       ; If char is zero, end of reading
         int 10h                         ; Otherwise, print it
-        jmp _printTextCycle
+        jmp _printCycle

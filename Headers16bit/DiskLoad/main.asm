@@ -38,14 +38,14 @@ _diskLoad:
 ;display error message
 _diskLoadError:
 	mov si, diskLoadFailed
-	call _printText
+	call _print
 	jmp _waitForKeyAndReboot
 
 _diskMismatch:
 	mov si, diskLoadMismatch
-	call _printText
+	call _print
 	mov si, diskLoadFailed
-	call _printText
+	call _print
 	jmp _waitForKeyAndReboot
 
 %include "../../AsmFun/Headers16bit/DiskLoadRes/main.asm"
