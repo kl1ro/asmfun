@@ -1,0 +1,2 @@
+_keyboardInterruptHandler:
+	iret

@@ -196,7 +196,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependency:
 	       _____________TODO____________
 
-10. _memcpyd
+10. _memcpyq
         Purpose:
                 Loads memory from the source to the destination
 
@@ -205,7 +205,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
                 - rdi is a pointer to the destination
 
-                - rcx is amount of double words to copy
+                - rcx is amount of quadwords to copy
 
         Output:
                 - rax is modified
@@ -216,7 +216,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
         Dependencies:
                 Code:
-                        %include "<Your_path_to_AsmFun>/Memcpyd/main.asm"
+                        %include "<Your_path_to_AsmFun>/Memcpyq/main.asm"
 
 11. _input
 	Purpose:
