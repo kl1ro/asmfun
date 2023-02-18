@@ -8,7 +8,7 @@
 ;
 ;       - rdi is a pointer to the destination
 ;
-;       - rcx is amount of double words to copy
+;       - rcx is amount of quadwords to copy
 ;
 ; Output:
 ;       - rax is modified
@@ -17,11 +17,11 @@
 ;
 ;       - rdi points to the rdi + rcx
 ;
-_memcpyd:
+_memcpyq:
         mov rax, [rsi]
         mov [rdi], rax
         add rsi, 8
 	add rdi, 8
-        loop _memcpyd
+        loop _memcpyq
         ret
 

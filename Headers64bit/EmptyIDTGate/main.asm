@@ -1,3 +1,0 @@
-EmptyIDTGate:
-	dq 0x0
-	dq 0x0
