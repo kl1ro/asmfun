@@ -21,26 +21,36 @@ IDT_OFFSET equ 0x0
 ;
 _loadIDT:
 	;
+	; Division by 0 interrupt
+	;
+	mov rsi, _divisionBy0Handler
+        mov rdi, IDTInterruptGatePattern
+        call _defineIDTInterruptGate
+	mov rbx, 1
+	mov rdi, IDT_OFFSET
+	call _loadIDTCycle
+	
+	;
 	; Define an empty idt gate	
 	;
+	mov rbx, rdi
 	mov rsi, _ignoreInterruptHandler
 	mov rdi, IDTInterruptGatePattern
 	call _defineIDTInterruptGate
-	
-	mov rbx, 33
-	mov rdi, IDT_OFFSET
+	mov rdi, rbx
+	mov rbx, 32
 	call _loadIDTCycle
 
 	;
-	; Keyboard interrupt handler
-	;
-	mov rbx, rdi
-	mov rsi, _keyboardInterruptHandler
-	mov rdi, IDTInterruptGatePattern
-	call _defineIDTInterruptGate
-	mov rdi, rbx
-	mov rbx, 1
-	call _loadIDTCycle
+        ; Keyboard interrupt handler
+        ;
+        mov rbx, rdi
+        mov rsi, _keyboardInterruptHandler
+        mov rdi, IDTInterruptGatePattern
+        call _defineIDTInterruptGate
+        mov rdi, rbx
+        mov rbx, 1
+        call _loadIDTCycle
 
 	;	
 	; Restore ignore interrupt handler
@@ -50,7 +60,7 @@ _loadIDT:
         mov rdi, IDTInterruptGatePattern
         call _defineIDTInterruptGate
 	mov rdi, rbx
-	mov rbx, 222
+	mov rbx, 14
 	call _loadIDTCycle	
 
 	;
@@ -152,8 +162,10 @@ _defineIDTInterruptGate:
         mov [rdi], esi
         ret
 
+%include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/DivisionBy0Handler/main.asm"
 %include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
 %include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
+%include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/SyscallHandler/main.asm"
 %include "../../Utilities/AsmFunOs/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
 
 IDTPointer:
