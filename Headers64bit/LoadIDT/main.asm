@@ -1,3 +1,24 @@
+IDT_OFFSET equ 0x0
+
+;
+; This function is for your operating system development
+; pleasure. This loads the idt table into adress 0x0
+; and sets it up so the cpu can access it.
+;
+; Input:
+;	- nothing at all
+;
+; Output:
+;	- rax is 0
+;
+;	- rbx is 0
+;
+;	- rcx is 0
+;
+;	- rsi is modified
+;
+;       - rdi points to the end of the IDT
+;
 _loadIDT:
 	;
 	; Define an empty idt gate	
@@ -7,7 +28,7 @@ _loadIDT:
 	call _defineIDTInterruptGate
 	
 	mov rbx, 33
-	mov rdi, 0x7e00
+	mov rdi, IDT_OFFSET
 	call _loadIDTCycle
 
 	;
@@ -137,4 +158,4 @@ _defineIDTInterruptGate:
 
 IDTPointer:
         dw 4096
-        dq 0x7e00
+        dq IDT_OFFSET

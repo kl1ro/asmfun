@@ -49,4 +49,4 @@ or eax, 0x80000001
 mov cr0, eax
 
 lgdt [GDTLM.Pointer]
-jmp GDTLM.Code:0x5000 		; kernel offset
+jmp GDTLM.Code:KERNEL_OFFSET 		; kernel offset

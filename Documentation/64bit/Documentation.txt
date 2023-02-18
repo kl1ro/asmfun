@@ -176,10 +176,11 @@ Here's the list of all functions and their purpose for your coding pleasure:
 			%include "<Your_path_to_AsmFun>/TempRes/main.asm"
 
 		Code (that means you gonna wanna put these lines in the end of your script):
-
+			
+			%include "<Your_path_to_AsmFun>/Memclr/main.asm"
 			%include "<Your_path_to_AsmFun>/GetDebugString/main.asm"
 			%include "<Your_path_to_AsmFun>/PrintSafe/main.asm"	
-			%include "<Your_path_to_AsmFun>/FlipTemp/main.asm"
+			%include "<Your_path_to_AsmFun>/FlipString/main.asm"
 			%include "<Your_path_to_AsmFun>/MinusCheck/main.asm"
 			%include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
 			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
@@ -567,3 +568,30 @@ Here's the list of all functions and their purpose for your coding pleasure:
         Dependencies:
                 Code:
                         %include "<Your_path_to_AsmFun>/Memcpyd/main.asm"
+
+28. _loadIDT
+        Purpose:
+                This function is for your operating system development
+		pleasure. This loads the idt table into adress 0x7e00
+		and sets it up so the cpu can access it
+
+        Input:
+                - nothing at all
+
+        Output:
+                - rax is 0
+
+		- rbx is 0
+
+		- rcx is 0
+
+		- rsi is modified
+
+		- rdi points to the end of the IDT
+
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/LoadIDT/main.asm"
+			%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
+			%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
+			%include "<Your_path_to_AsmFunOs>/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
