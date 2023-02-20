@@ -505,7 +505,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
                 Code:
                         %include "<Your_path_to_AsmFun>/HaltMachine/main.asm"
 
-25. _memclr
+25. _memclrb
         Purpose:
                 Puts zeros into memory
 
@@ -523,7 +523,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
         Dependencies:
                 Code:
-                        %include "<Your_path_to_AsmFun>/Memclr/main.asm"
+                        %include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 
 26. _memcpyb
         Purpose:
@@ -595,3 +595,101 @@ Here's the list of all functions and their purpose for your coding pleasure:
 			%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
 			%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
 			%include "<Your_path_to_AsmFunOs>/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
+
+29. _chill
+	Purpose:
+		Puts a computer in a waiting mode which means it does nothing
+		but responds to only interrupts
+
+	Input:
+		- nothing
+
+	Output:
+		- nothing
+
+	Dependencies:
+		Code:
+			%include "<Your_path_to_AsmFun>/Chill/main.asm"
+
+30. _memclrw
+        Purpose:
+                Puts zeros into memory
+
+        Input:
+                - rdi as a pointer to memory
+
+                - rcx as amount of words to clear
+
+        Output:
+                - ax equals to 0 
+
+                - rdi points to the memory + 2 * rcx
+
+                - rcx remains the same
+
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/Memclrw/main.asm"
+
+31. _memclrq
+        Purpose:
+                Puts zeros into memory
+
+        Input:
+                - rdi as a pointer to memory
+
+                - rcx as amount of quad words to clear
+
+        Output:
+                - rax equals to 0 
+
+                - rdi points to the memory + 8 * rcx
+
+                - rcx remains the same
+
+        Dependencies:
+                Code:
+                        %include "<Your_path_to_AsmFun>/Memclrq/main.asm"
+
+32. _sleep
+	Purpose:	
+		Waits some amount of time and then returns
+	
+	Input:
+		- rcx as amount of time in milliseconds
+	
+	Output:
+		- rcx equals to 0
+
+	Dependencies:
+		Code:
+			%include "<Your_path_to_AsmFun>/Sleep/main.asm"
+
+33. _strcmp
+	Purpose:
+		Compares two strings and returns: 
+			1) 0 if they are completely equal
+
+			2) < 0 if ascii code of at least one character
+			   of the first string is more than the code
+			   of the respective character of the second string
+	
+			3) else < 0
+
+	Input:
+		- rsi as a pointer to the
+		first string
+		
+		- rdi as a pointer to the 
+		second string
+
+	Output:
+		- rax is an answer
+
+		- bl is modified
+
+		- rsi points to the end
+		of the first string
+
+		- rdi points to the end
+		of the second string
