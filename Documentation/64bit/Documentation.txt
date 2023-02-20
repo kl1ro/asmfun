@@ -278,7 +278,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 			%include "<Your_path_to_AsmFun>/IntToString/main.asm"
 			%include "<Your_path_to_AsmFun>/Negate/main.asm"
 			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
-			%include "<Your_path_to_AsmFun>/Memclr/main.asm"
+			%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 
 13. _minusCheck
 	Purpose:
