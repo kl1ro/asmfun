@@ -293,7 +293,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		- bl equals to 45 if rax is negative else remains the same
 
 		- string is modified if rax is negative
-
+`
 		- rdi is incremented if "-" was written to a string
 	
 	Dependencies:	

@@ -12,10 +12,10 @@
 ;
 ;	- rcx remains the same
 ;
-_memclr:
+_memclrb:
         mov al, 0
         mov [rdi], al
         inc rdi
-        loop _memclr
+        loop _memclrb
         ret
 

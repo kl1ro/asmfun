@@ -58,5 +58,5 @@ _intToString:
 	;
 	mov rcx, 19
 	mov rdi, temp
-	call _memclr
+	call _memclrb
         ret
