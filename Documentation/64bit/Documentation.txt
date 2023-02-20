@@ -177,7 +177,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 		Code (that means you gonna wanna put these lines in the end of your script):
 			
-			%include "<Your_path_to_AsmFun>/Memclr/main.asm"
+			%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 			%include "<Your_path_to_AsmFun>/GetDebugString/main.asm"
 			%include "<Your_path_to_AsmFun>/PrintSafe/main.asm"	
 			%include "<Your_path_to_AsmFun>/FlipString/main.asm"
@@ -185,6 +185,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 			%include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
 			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
 			%include "<Your_path_to_AsmFun>/Negate/main.asm"
+			%include "<Your_path_to_AsmFun>/IntToString/main.asm"
 
 9. _getFloatingPortion _____________TODO___________
 
