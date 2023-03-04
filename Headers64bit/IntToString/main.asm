@@ -13,7 +13,7 @@
 ;
 ;	- rsi is modified
 ;
-;	- rdi is modified
+;	- rdi points to the end of the string
 ;
 ; 	- r8 id modified
 ;	
@@ -42,15 +42,20 @@ _intToString:
 	; 
 	mov rdi, temp
 	mov rbx, 10
-        call _assignFlippedIntegerPortion
+    call _assignFlippedIntegerPortion
 
 	;
 	; Then we need to put our decimal value
-	; to a string and thus we restore old rdi value
+	; to a string and thus we restore the old rdi value
 	;
 	mov rsi, temp
 	mov rdi, r8
-        call _flipString
+    call _flipString
+
+	;
+	; Save rdi value again
+	;
+	mov r8, rdi
 
 	;
 	; And finally we clear temp memory
@@ -59,4 +64,9 @@ _intToString:
 	mov rcx, 19
 	mov rdi, temp
 	call _memclrb
-        ret
+
+	;
+	; Restore rdi value
+	;
+	mov rdi, r8
+    ret

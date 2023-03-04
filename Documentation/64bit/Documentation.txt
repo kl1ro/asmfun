@@ -580,7 +580,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
                 - nothing at all
 
         Output:
-                - rax is 0
+                - rax is modified
 
 		- rbx is 0
 

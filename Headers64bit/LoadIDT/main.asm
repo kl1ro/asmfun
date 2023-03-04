@@ -9,7 +9,7 @@ IDT_OFFSET equ 0x0
 ;	- nothing at all
 ;
 ; Output:
-;	- rax is 0
+;	- rax is modified
 ;
 ;	- rbx is 0
 ;
@@ -17,15 +17,15 @@ IDT_OFFSET equ 0x0
 ;
 ;	- rsi is modified
 ;
-;       - rdi points to the end of the IDT
+;   - rdi points to the end of the IDT
 ;
 _loadIDT:
 	;
 	; Division by 0 interrupt
 	;
 	mov rsi, _divisionBy0Handler
-        mov rdi, IDTInterruptGatePattern
-        call _defineIDTInterruptGate
+	mov rdi, IDTInterruptGatePattern
+    call _defineIDTInterruptGate
 	mov rbx, 1
 	mov rdi, IDT_OFFSET
 	call _loadIDTCycle
@@ -42,47 +42,69 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-        ; Keyboard interrupt handler
-        ;
-        mov rbx, rdi
-        mov rsi, _keyboardInterruptHandler
-        mov rdi, IDTInterruptGatePattern
-        call _defineIDTInterruptGate
-        mov rdi, rbx
-        mov rbx, 1
-        call _loadIDTCycle
+    ; Keyboard interrupt handler
+    ;
+    mov rbx, rdi
+    mov rsi, _keyboardInterruptHandler
+    mov rdi, IDTInterruptGatePattern
+    call _defineIDTInterruptGate
+    mov rdi, rbx
+    mov rbx, 1
+    call _loadIDTCycle
 
 	;	
 	; Restore ignore interrupt handler
 	;	
 	mov rbx, rdi
 	mov rsi, _ignoreInterruptHandler
-        mov rdi, IDTInterruptGatePattern
-        call _defineIDTInterruptGate
+    mov rdi, IDTInterruptGatePattern
+    call _defineIDTInterruptGate			
 	mov rdi, rbx
-	mov rbx, 14
+	mov rbx, 94
+	call _loadIDTCycle	
+
+	;
+	; Load system call interrupt
+	;	
+	mov rbx, rdi
+	mov rsi, _syscallHandler
+    mov rdi, IDTInterruptGatePattern
+    call _defineIDTInterruptGate			
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle	
+	
+	;	
+	; Restore ignore interrupt handler
+	;	
+	mov rbx, rdi
+	mov rsi, _ignoreInterruptHandler
+    mov rdi, IDTInterruptGatePattern
+    call _defineIDTInterruptGate			
+	mov rdi, rbx
+	mov rbx, 127
 	call _loadIDTCycle	
 
 	;
 	; Set up PIC
 	;
 	mov al, 0x11
-        out 0x20, al
-        out 0xa0, al
-        mov al, 0x20
-        out 0x21, al
-        mov al, 0x28
-        out 0xa1, al
-        mov al, 0x04
-        out 0x21, al
-        mov al, 0x02
-        out 0xa1, al
-        mov al, 0x01
-        out 0x21, al
-        out 0xa1, al
-        mov al, 0x0
-        out 0x21, al
-        out 0xa1, al
+    out 0x20, al
+    out 0xa0, al
+    mov al, 0x20
+    out 0x21, al
+    mov al, 0x28
+    out 0xa1, al
+    mov al, 0x04
+    out 0x21, al
+    mov al, 0x02
+    out 0xa1, al
+    mov al, 0x01
+    out 0x21, al
+    out 0xa1, al
+    mov al, 0x0
+    out 0x21, al
+    out 0xa1, al
 
 	;	
 	; Load prepared IDT
@@ -136,9 +158,9 @@ _loadIDTCycle:
 ; Output:
 ;       - rdi is modified
 ;
-;	- rsi shifted by 16 bit to the right
+;    	- rsi shifted by 16 bit to the right
 ;
-;	- rax is modified
+;	    - rax is modified
 ;
 _defineIDTInterruptGate:
         ;
