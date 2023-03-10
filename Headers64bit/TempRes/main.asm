@@ -1,2 +1,2 @@
 section .bss
-	temp resb 20
+	temp resb 64

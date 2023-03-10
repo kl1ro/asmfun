@@ -14,7 +14,7 @@
 ;	- rdi points to the end
 ;	of the destination string
 ;
-;	- r8 equals to rsi
+;	- rbx equals to rsi
 ;
 ;	- rax is modified
 ;
@@ -25,7 +25,7 @@
 ;	flipped source string
 ;
 _flipString:
-	mov r8, rsi
+	mov rbx, rsi
 
 _flipStringCycle1:
 	inc rsi
@@ -38,6 +38,6 @@ _flipStringCycle2:
         mov al, [rsi]
         mov [rdi], al
         inc rdi
-        cmp rsi, r8
+        cmp rsi, rbx
         jne _flipStringCycle2
         ret

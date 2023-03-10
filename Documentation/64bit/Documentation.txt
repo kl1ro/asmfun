@@ -257,6 +257,8 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		- rdi as a pointer to destination string
 
 	Output:	
+		- rax is modified
+
 		- rcx is modified
 		
 		- rdx is modified
@@ -265,7 +267,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 		- rdi is modified
 
-		- r8 is modified
+		- rbx is modified
 
 	Dependencies:
 		Resourses:
@@ -430,23 +432,36 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 21. _stringToInt
 	Purpose:
-                Takes integer from string and puts it into register
+    	Takes integer from string and puts it into register
         
 	Input:
-                - rsi as a pointer to string
+    	- rsi as a pointer to string
         
 	Output:
-                - rbx is a number being recieved from a string
 
-		- dil equals to 1 if a number is negative else 0
+		- rax is a number being recieved from a string
 
-		- cl equals to number of digits in a number
+		- rbx is modified
+
+		- ch equals to 1 if a number is negative else 0
+
+		- cl equals to 0
 
 		- r8 equals to 10
 	
 		- r9 is modified
 
+		- r10b stores the number of digits
+
 		- rdx is modified
+
+		- rsi points to the string
+
+		- rdi points to the place of the
+   	    string where the program has ended
+	    for some reason (e.g. ".", " ", "\0" etc)
+        has ended the execution
+
         
 	Dependency:
                 Code:

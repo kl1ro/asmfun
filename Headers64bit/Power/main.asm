@@ -17,6 +17,8 @@
 _power:
 	mov rbx, rax
 	dec rcx
+	test rcx, rcx
+	jz _break
 
 _powerCycle:	
 	mul ebx

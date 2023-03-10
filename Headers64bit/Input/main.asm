@@ -5,7 +5,7 @@
 ; Input:
 ;	- rsi as a pointer to memory
 ;	
-;	- rdi as a maximum amount of characters 
+;	- rdx as a maximum amount of characters 
 ;	in a string	
 ;
 ; Output:

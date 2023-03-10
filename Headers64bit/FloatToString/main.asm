@@ -44,9 +44,8 @@ section .text
 	;
 	; This is 1 + mantissa
 	;
-	xor rdx, rdx
 	mov rax, rcx
-    add rax, 8388608
+	or rax, 1 << 23	
 
 	;
     ; Calculating 2 ^ exp
@@ -55,14 +54,15 @@ section .text
     call _twoInThePowerOfN
 
     mov rbx, 8388608
+	xor rdx, rdx
     div rbx 
 
 	;
 	; Convert the integer portion 
 	; to string and save regs
 	;
-    mov r9, rdx 
-    mov r10, rbx 
+    mov r8, rdx 
+    mov r9, rbx 
     call _intToString
 
 	;
@@ -75,8 +75,8 @@ section .text
 	; Convert the floating portion
 	;
 	mov rcx, 10
-    mov rdx, r9
-    mov rbx, r10
+    mov rdx, r8
+    mov rbx, r9
     mov r8, 10
     call _assignFloatingPortion
    	ret

@@ -7,6 +7,8 @@
 ;	- rdi as a pointer to destination string
 ;
 ; Output:
+;	- rax is modified
+;
 ;	- rcx is modified
 ;
 ;	- rdx is modified
@@ -15,8 +17,6 @@
 ;
 ;	- rdi points to the end of the string
 ;
-; 	- r8 id modified
-;	
 _intToString:
 	;
 	; First things first we need
@@ -32,7 +32,7 @@ _intToString:
 	; Then we need to save pointer to memory
 	; for further usage
 	;
-	mov r8, rdi
+	mov rsi, rdi
 
 	;
 	; Put to rdi a pointer to temp
@@ -48,14 +48,14 @@ _intToString:
 	; Then we need to put our decimal value
 	; to a string and thus we restore the old rdi value
 	;
+	mov rdi, rsi
 	mov rsi, temp
-	mov rdi, r8
     call _flipString
 
 	;
 	; Save rdi value again
 	;
-	mov r8, rdi
+	mov rsi, rdi
 
 	;
 	; And finally we clear temp memory
@@ -68,5 +68,5 @@ _intToString:
 	;
 	; Restore rdi value
 	;
-	mov rdi, r8
+	mov rdi, rsi
     ret
