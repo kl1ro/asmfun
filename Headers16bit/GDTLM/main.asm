@@ -1,27 +1,33 @@
 GDTLM:
 	.Null: equ $ - GDTLM
-		dw 0
-		dw 0
-		db 0
-		db 0
-		db 0
-		db 0
+		dq 0
 	
 	.Code: equ $ - GDTLM
-		dw 0
-		dw 0
+		dd 0
 		db 0
 		db 10011000b
 		db 00100000b
 		db 0
 	
 	.Data: equ $ - GDTLM
-		dw 0
-		dw 0
+		dd 0
 		db 0
 		db 10000000b
-		db 0
-		db 0
+		dw 0
+
+	.UserCode: equ $ - GDTLM
+                dd 0
+                db 0
+                db 11111000b
+                db 00100000b
+                db 0
+
+        .UserData: equ $ - GDTLM
+                dd 0
+                db 0
+                db 11110010b
+		dw 0
+
 	
 	.Pointer:
 		dw $ - GDTLM - 1

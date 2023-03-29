@@ -1,6 +1,13 @@
-cli		; Disable interrupts
+;
+; Disable interrupts
+;
+cli
 
+;
 ; Setting up paging
+; Note that the paging can be 
+; accessed at address 0x1000
+;
 mov edi, 0x1000
 mov cr3, edi
 xor eax, eax
@@ -30,15 +37,19 @@ mov ecx, 0x200
 	add edi, 8
 	loop .setEntry
 
+;
 ; Set 5th bit in control reg 4
 ; Meaning Paging is on
+;
 mov eax, cr4
 or eax, 1 << 5
 mov cr4, eax
 
+;
 ; We're in compatibility mode
 ; Meaning we have 64 bit address space
 ; but only 16 and 32 bit instructions
+;
 mov ecx, 0xc0000080
 rdmsr
 or eax, 1 << 8

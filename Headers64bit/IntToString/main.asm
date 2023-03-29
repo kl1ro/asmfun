@@ -41,8 +41,8 @@ _intToString:
 	; use decimal number system
 	; 
 	mov rdi, temp
-	mov rbx, 10
-    call _assignFlippedIntegerPortion
+	mov rbx, 2
+        call _assignFlippedIntegerPortion
 
 	;
 	; Then we need to put our decimal value

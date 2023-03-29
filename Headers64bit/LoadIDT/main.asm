@@ -25,7 +25,7 @@ _loadIDT:
 	;
 	mov rsi, _divisionBy0Handler
 	mov rdi, IDTInterruptGatePattern
-    call _defineIDTInterruptGate
+	call _defineIDTInterruptGate
 	mov rbx, 1
 	mov rdi, IDT_OFFSET
 	call _loadIDTCycle
@@ -42,23 +42,23 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-    ; Keyboard interrupt handler
-    ;
-    mov rbx, rdi
-    mov rsi, _keyboardInterruptHandler
-    mov rdi, IDTInterruptGatePattern
-    call _defineIDTInterruptGate
-    mov rdi, rbx
-    mov rbx, 1
-    call _loadIDTCycle
+    	; Keyboard interrupt handler
+    	;
+    	mov rbx, rdi
+    	mov rsi, _keyboardInterruptHandler
+    	mov rdi, IDTInterruptGatePattern
+    	call _defineIDTInterruptGate
+    	mov rdi, rbx
+    	mov rbx, 1
+    	call _loadIDTCycle
 
 	;	
 	; Restore ignore interrupt handler
 	;	
 	mov rbx, rdi
 	mov rsi, _ignoreInterruptHandler
-    mov rdi, IDTInterruptGatePattern
-    call _defineIDTInterruptGate			
+    	mov rdi, IDTInterruptGatePattern
+    	call _defineIDTInterruptGate			
 	mov rdi, rbx
 	mov rbx, 94
 	call _loadIDTCycle	
@@ -68,8 +68,8 @@ _loadIDT:
 	;	
 	mov rbx, rdi
 	mov rsi, _syscallHandler
-    mov rdi, IDTInterruptGatePattern
-    call _defineIDTInterruptGate			
+    	mov rdi, IDTInterruptGatePattern
+    	call _defineIDTInterruptGate			
 	mov rdi, rbx
 	mov rbx, 1
 	call _loadIDTCycle	
@@ -79,8 +79,8 @@ _loadIDT:
 	;	
 	mov rbx, rdi
 	mov rsi, _ignoreInterruptHandler
-    mov rdi, IDTInterruptGatePattern
-    call _defineIDTInterruptGate			
+    	mov rdi, IDTInterruptGatePattern
+    	call _defineIDTInterruptGate			
 	mov rdi, rbx
 	mov rbx, 127
 	call _loadIDTCycle	
@@ -89,22 +89,22 @@ _loadIDT:
 	; Set up PIC
 	;
 	mov al, 0x11
-    out 0x20, al
-    out 0xa0, al
-    mov al, 0x20
-    out 0x21, al
-    mov al, 0x28
-    out 0xa1, al
-    mov al, 0x04
-    out 0x21, al
-    mov al, 0x02
-    out 0xa1, al
-    mov al, 0x01
-    out 0x21, al
-    out 0xa1, al
-    mov al, 0x0
-    out 0x21, al
-    out 0xa1, al
+    	out 0x20, al
+    	out 0xa0, al
+    	mov al, 0x20
+    	out 0x21, al
+    	mov al, 0x28
+    	out 0xa1, al
+    	mov al, 0x04
+    	out 0x21, al
+    	mov al, 0x02
+    	out 0xa1, al
+    	mov al, 0x01
+    	out 0x21, al
+    	out 0xa1, al
+    	mov al, 0x0
+    	out 0x21, al
+    	out 0xa1, al
 
 	;	
 	; Load prepared IDT
