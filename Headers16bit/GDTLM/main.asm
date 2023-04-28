@@ -12,20 +12,20 @@ GDTLM:
 	.Data: equ $ - GDTLM
 		dd 0
 		db 0
-		db 10010000b
+		db 10010010b
 		dw 0
 
 	.UserCode: equ $ - GDTLM
-                dd 0
-                db 0
-                db 11111000b
-                db 00100000b
-                db 0
+		dd 0
+		db 0
+		db 11111000b
+		db 00100000b
+		db 0
 
-        .UserData: equ $ - GDTLM
-                dd 0
-                db 0
-                db 11110000b
+	.UserData: equ $ - GDTLM
+		dd 0
+		db 0
+		db 11110010b
 		dw 0
 
 	
