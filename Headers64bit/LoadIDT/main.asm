@@ -21,7 +21,7 @@ IDT_OFFSET equ 0x0
 ;
 _loadIDT:
 	;
-	; Division by 0 interrupt
+	; Division by 0 interrupt (id 0)
 	;
 	mov rsi, _divisionBy0Handler
 	mov rdi, IDTInterruptGatePattern
@@ -38,27 +38,38 @@ _loadIDT:
 	mov rdi, IDTInterruptGatePattern
 	call _defineIDTInterruptGate
 	mov rdi, rbx
-	mov rbx, 32
+	mov rbx, 31
 	call _loadIDTCycle
 
 	;
-    	; Keyboard interrupt handler
-    	;
-    	mov rbx, rdi
-    	mov rsi, _keyboardInterruptHandler
-    	mov rdi, IDTInterruptGatePattern
-    	call _defineIDTInterruptGate
-    	mov rdi, rbx
-    	mov rbx, 1
-    	call _loadIDTCycle
+	; Define a clock interrupt handler idt gate (id 32)	
+	;
+	mov rbx, rdi
+	mov rsi, _clockInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Keyboard interrupt handler (id 33)
+	;
+	mov rbx, rdi
+	mov rsi, _keyboardInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
 
 	;	
 	; Restore ignore interrupt handler
 	;	
 	mov rbx, rdi
 	mov rsi, _ignoreInterruptHandler
-    	mov rdi, IDTInterruptGatePattern
-    	call _defineIDTInterruptGate			
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate			
 	mov rdi, rbx
 	mov rbx, 94
 	call _loadIDTCycle	
@@ -68,8 +79,8 @@ _loadIDT:
 	;	
 	mov rbx, rdi
 	mov rsi, _syscallHandler
-    	mov rdi, IDTInterruptGatePattern
-    	call _defineIDTInterruptGate			
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate			
 	mov rdi, rbx
 	mov rbx, 1
 	call _loadIDTCycle	
@@ -79,32 +90,32 @@ _loadIDT:
 	;	
 	mov rbx, rdi
 	mov rsi, _ignoreInterruptHandler
-    	mov rdi, IDTInterruptGatePattern
-    	call _defineIDTInterruptGate			
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate			
 	mov rdi, rbx
 	mov rbx, 127
 	call _loadIDTCycle	
 
 	;
-	; Set up PIC
+	; Set up the PIC
 	;
 	mov al, 0x11
-    	out 0x20, al
-    	out 0xa0, al
-    	mov al, 0x20
-    	out 0x21, al
-    	mov al, 0x28
-    	out 0xa1, al
-    	mov al, 0x04
-    	out 0x21, al
-    	mov al, 0x02
-    	out 0xa1, al
-    	mov al, 0x01
-    	out 0x21, al
-    	out 0xa1, al
-    	mov al, 0x0
-    	out 0x21, al
-    	out 0xa1, al
+	out 0x20, al
+	out 0xa0, al
+	mov al, 0x20
+	out 0x21, al
+	mov al, 0x28
+	out 0xa1, al
+	mov al, 0x04
+	out 0x21, al
+	mov al, 0x02
+	out 0xa1, al
+	mov al, 0x01
+	out 0x21, al
+	out 0xa1, al
+	mov al, 0x0
+	out 0x21, al
+	out 0xa1, al
 
 	;	
 	; Load prepared IDT
@@ -163,33 +174,34 @@ _loadIDTCycle:
 ;	    - rax is modified
 ;
 _defineIDTInterruptGate:
-        ;
-        ; Offset (0 - 15)
-        ;
-        mov [rdi], si
-        add rdi, 6
+	;
+	; Offset (0 - 15)
+	;
+	mov [rdi], si
+	add rdi, 6
 
-        ;
-        ; Offset (48 - 63)
-        ;
-        mov eax, esi
-        shr eax, 16
-        mov [rdi], ax
-        add rdi, 2
+	;
+	; Offset (48 - 63)
+	;
+	mov eax, esi
+	shr eax, 16
+	mov [rdi], ax
+	add rdi, 2
 
-        ;
-        ; Offset (64 - 95)
-        ;
-        shr rsi, 32
-        mov [rdi], esi
-        ret
+	;
+	; Offset (64 - 95)
+	;
+	shr rsi, 32
+	mov [rdi], esi
+	ret
 
-%include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/DivisionBy0Handler/main.asm"
-%include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
-%include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
-%include "../../Utilities/AsmFunOs/src/interrupts/interruptServiceRoutines/SyscallHandler/main.asm"
-%include "../../Utilities/AsmFunOs/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
+%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/DivisionBy0Handler/main.asm"
+%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
+%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
+%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/ClockInterruptHandler/main.asm"
+%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/SyscallHandler/main.asm"
+%include "../../Utilities/Oasis/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
 
 IDTPointer:
-        dw 4096
-        dq IDT_OFFSET
+	dw 4096
+	dq IDT_OFFSET
