@@ -2,7 +2,7 @@ IDT_OFFSET equ 0x0
 
 ;
 ; This function is for your operating system development
-; pleasure. This loads the idt table into adress 0x0
+; pleasure. This loads the idt table into address 0x0
 ; and sets it up so the cpu can access it.
 ;
 ; Input:

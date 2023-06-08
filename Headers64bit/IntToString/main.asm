@@ -21,7 +21,7 @@ _intToString:
 	;
 	; First things first we need
 	; to check if a number is negative
-	; and if it is we put a "-" character 
+	; itoa(number, clock_str, 10)and if it is we put a "-" character 
 	; to a memory, increment pointer to memory
 	; and negate a number just to get its 
 	; absolute value
@@ -41,8 +41,8 @@ _intToString:
 	; use decimal number system
 	; 
 	mov rdi, temp
-	mov rbx, 2
-        call _assignFlippedIntegerPortion
+	mov rbx, 10
+	call _assignFlippedIntegerPortion
 
 	;
 	; Then we need to put our decimal value

@@ -13,7 +13,6 @@ mov cr3, edi
 xor eax, eax
 mov ecx, 4096
 rep stosd
-mov edi, 0x1000
 
 ; PML4T -> 0x1000
 ; PDPT  -> 0x2000
@@ -23,6 +22,7 @@ mov edi, 0x1000
 ;
 ; Filling the page tables
 ;
+mov edi, 0x1000
 mov dword [edi], 0x2003
 shl edi, 1
 mov dword [edi], 0x3003
@@ -69,13 +69,4 @@ or eax, 0x80000001
 mov cr0, eax
 
 lgdt [GDTLM.Pointer]
-
-;
-; Switch the pointers
-;
-mov ax, GDTLM.Data
-mov ss, ax
-mov ds, ax
-mov es, ax
-
 jmp GDTLM.Code:KERNEL_OFFSET 		; kernel offset
