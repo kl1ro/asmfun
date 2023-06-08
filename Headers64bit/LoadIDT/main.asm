@@ -21,7 +21,7 @@ IDT_OFFSET equ 0x0
 ;
 _loadIDT:
 	;
-	; Division by 0 interrupt (id 0)
+	; Division by 0 fault (id 0)
 	;
 	mov rsi, _divisionBy0Handler
 	mov rdi, IDTInterruptGatePattern
@@ -38,7 +38,84 @@ _loadIDT:
 	mov rdi, IDTInterruptGatePattern
 	call _defineIDTInterruptGate
 	mov rdi, rbx
-	mov rbx, 31
+	mov rbx, 5
+	call _loadIDTCycle
+
+	;
+	; Invalid opcode fault (id 6)
+	;
+	mov rbx, rdi
+	mov rsi, _invalidOpcodeInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Device not available fault (id 7)
+	;
+	mov rbx, rdi
+	mov rsi, _deviceNotAvailableInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Define an empty idt gate	
+	;
+	mov rbx, rdi
+	mov rsi, _ignoreInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 2
+	call _loadIDTCycle
+
+	;
+	; Invalid TSS fault (id 10)
+	;
+	mov rbx, rdi
+	mov rsi, _invalidTSSInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Invalid TSS fault (id 11)
+	;
+	mov rbx, rdi
+	mov rsi, _segmentNotPresentInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Stack-segment fault (id 12)
+	;
+	mov rbx, rdi
+	mov rsi, _stackSegmentFaultInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Define an empty idt gate	
+	;
+	mov rbx, rdi
+	mov rsi, _ignoreInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 19
 	call _loadIDTCycle
 
 	;
@@ -194,13 +271,6 @@ _defineIDTInterruptGate:
 	shr rsi, 32
 	mov [rdi], esi
 	ret
-
-%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/DivisionBy0Handler/main.asm"
-%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
-%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
-%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/ClockInterruptHandler/main.asm"
-%include "../../Utilities/Oasis/src/interrupts/interruptServiceRoutines/SyscallHandler/main.asm"
-%include "../../Utilities/Oasis/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
 
 IDTPointer:
 	dw 4096
