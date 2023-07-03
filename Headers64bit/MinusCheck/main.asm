@@ -27,5 +27,5 @@ _minusCheck:
 
 _minusConfirmed:
         call _addMinus
-        call _negate
+        neg rax
         ret

@@ -31,15 +31,9 @@ _loadIDT:
 	call _loadIDTCycle
 	
 	;
-	; Define an empty idt gate	
+	; Empty idt gates	
 	;
-	mov rbx, rdi
-	mov rsi, _ignoreInterruptHandler
-	mov rdi, IDTInterruptGatePattern
-	call _defineIDTInterruptGate
-	mov rdi, rbx
-	mov rbx, 5
-	call _loadIDTCycle
+	add rdi, 5 * 16
 
 	;
 	; Invalid opcode fault (id 6)
@@ -64,15 +58,9 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Define an empty idt gate	
+	; Empty idt gates	
 	;
-	mov rbx, rdi
-	mov rsi, _ignoreInterruptHandler
-	mov rdi, IDTInterruptGatePattern
-	call _defineIDTInterruptGate
-	mov rdi, rbx
-	mov rbx, 2
-	call _loadIDTCycle
+	add rdi, 2 * 16
 
 	;
 	; Invalid TSS fault (id 10)
@@ -86,7 +74,7 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Invalid TSS fault (id 11)
+	; Segment not present fault (id 11)
 	;
 	mov rbx, rdi
 	mov rsi, _segmentNotPresentInterruptHandler
@@ -108,18 +96,50 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Define an empty idt gate	
+	; General protection fault (id 13)
 	;
 	mov rbx, rdi
-	mov rsi, _ignoreInterruptHandler
+	mov rsi, _generalProtectionFaultInterruptHandler
 	mov rdi, IDTInterruptGatePattern
 	call _defineIDTInterruptGate
 	mov rdi, rbx
-	mov rbx, 19
+	mov rbx, 1
 	call _loadIDTCycle
 
 	;
-	; Define a clock interrupt handler idt gate (id 32)	
+	; Page fault (id 14)
+	;
+	mov rbx, rdi
+	mov rsi, _pageFaultInterruptHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Empty idt gate	
+	;
+	add rdi, 16
+
+	;
+	; x87 Floating-point exception (id 16)	
+	;
+	mov rbx, rdi
+	mov rsi, _floatingPointExceptionHandler
+	mov rdi, IDTInterruptGatePattern
+	call _defineIDTInterruptGate
+	mov rdi, rbx
+	mov rbx, 1
+	call _loadIDTCycle
+
+	;
+	; Empty idt gates	
+	;
+	add rdi, 15 * 16
+
+	;
+	; Clock interrupt handler idt gate (id 32)	
 	;
 	mov rbx, rdi
 	mov rsi, _clockInterruptHandler
@@ -141,18 +161,12 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;	
-	; Restore ignore interrupt handler
+	; Empty idt gates
 	;	
-	mov rbx, rdi
-	mov rsi, _ignoreInterruptHandler
-	mov rdi, IDTInterruptGatePattern
-	call _defineIDTInterruptGate			
-	mov rdi, rbx
-	mov rbx, 94
-	call _loadIDTCycle	
+	add rdi, 94 * 16
 
 	;
-	; Load system call interrupt
+	; System call interrupt (id 128)
 	;	
 	mov rbx, rdi
 	mov rsi, _syscallHandler
@@ -163,15 +177,10 @@ _loadIDT:
 	call _loadIDTCycle	
 	
 	;	
-	; Restore ignore interrupt handler
-	;	
-	mov rbx, rdi
-	mov rsi, _ignoreInterruptHandler
-	mov rdi, IDTInterruptGatePattern
-	call _defineIDTInterruptGate			
-	mov rdi, rbx
-	mov rbx, 127
-	call _loadIDTCycle	
+	; Then go 127 empty idt gates
+	;		
+	; ...
+	;
 
 	;
 	; Set up the PIC

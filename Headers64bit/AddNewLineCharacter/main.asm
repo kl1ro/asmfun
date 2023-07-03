@@ -2,7 +2,7 @@
 ; Adds \n character to the memory
 ;
 ; Input:
-;	rdi as a pointer to the memory
+;       rdi as a pointer to the memory
 ;
 ; Output:
 ;	bl equals to 10

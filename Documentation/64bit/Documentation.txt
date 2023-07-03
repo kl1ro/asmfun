@@ -79,7 +79,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		- rbx is a devider (for decimal it must be 10)
 
 	Output:
-       		- rdx is modified
+       	- rdx is modified
 	
 		- rdi points to the end of the destination string
 	
@@ -91,7 +91,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 	Dependency:
        		Put this line of code into your nasm code:
-               		%include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
+               	%include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
 
 5. _break
 
@@ -184,7 +184,6 @@ Here's the list of all functions and their purpose for your coding pleasure:
 			%include "<Your_path_to_AsmFun>/MinusCheck/main.asm"
 			%include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
 			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
-			%include "<Your_path_to_AsmFun>/Negate/main.asm"
 			%include "<Your_path_to_AsmFun>/IntToString/main.asm"
 
 9. _getFloatingPortion _____________TODO___________
@@ -200,25 +199,25 @@ Here's the list of all functions and their purpose for your coding pleasure:
 
 10. _memcpyq
         Purpose:
-                Loads memory from the source to the destination
+			Loads memory from the source to the destination
 
         Input:
-                - rsi is a pointer to source
+			- rsi is a pointer to source
 
-                - rdi is a pointer to the destination
+			- rdi is a pointer to the destination
 
-                - rcx is amount of quadwords to copy
+			- rcx is amount of quadwords to copy
 
         Output:
-                - rax is modified
+			- rax is modified
 
-                - rsi points to the rsi + rcx
+			- rsi points to the rsi + rcx
 
-                - rdi points to the rdi + rcx
+			- rdi points to the rdi + rcx
 
         Dependencies:
                 Code:
-                        %include "<Your_path_to_AsmFun>/Memcpyq/main.asm"
+					%include "<Your_path_to_AsmFun>/Memcpyq/main.asm"
 
 11. _input
 	Purpose:
@@ -256,8 +255,12 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	
 		- rdi as a pointer to destination string
 
+		- rcx as the number base
+
 	Output:	
 		- rax is modified
+		
+		- rbx is modified
 
 		- rcx is modified
 		
@@ -266,8 +269,6 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		- rsi is modified
 
 		- rdi is modified
-
-		- rbx is modified
 
 	Dependencies:
 		Resourses:
@@ -278,7 +279,6 @@ Here's the list of all functions and their purpose for your coding pleasure:
 			%include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
 			%include "<Your_path_to_AsmFun>/FlipString/main.asm"
 			%include "<Your_path_to_AsmFun>/IntToString/main.asm"
-			%include "<Your_path_to_AsmFun>/Negate/main.asm"
 			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
 			%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 
@@ -303,23 +303,8 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		Code:
 			%include "<Your_path_to_AsmFun>/MinusCheck/main.asm"
 			%include "<Your_path_to_AsmFun>/AddMinus/main.asm"
-			%include "<Your_path_to_AsmFun>/Negate/main.asm"
 
-14. _negate
-	Purpose:
-		Negates the number being in rax
-
-	Input:
-		- rax as an integer
-
-	Output:
-		- rax is negated
-
-	Dependency:
-		Code:
-			%include "<Your_path_to_AsmFun>/Negate/main.asm"
-
-15. _print
+14. _print
 	Purpose:
 		Print a text string to the screen
 
@@ -343,21 +328,21 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		Code:
 			%include "<Your_path_to_AsmFun>/Print/main.asm"
 
-16. _printSafe
+15. _printSafe
         Purpose:
-                Print a text string with saving all registers
+			Print a text string with saving all registers
         
 	Input:
-        	- rsi as a pointer to string        
+		- rsi as a pointer to string        
        
 	Output: 
-                - everything remains the same but string is printer
+		- everything remains the same but string is printer
         
 	Dependency:      
-                Code:
-                        %include "<Your_path_to_AsmFun>/PrintSafe/main.asm"
+		Code:
+			%include "<Your_path_to_AsmFun>/PrintSafe/main.asm"
 
-17. _exit
+16. _exit
 	Purpose:
 		Quits from a program. In C the equivalent is "return 0;"
 		meaning the program ended normally
@@ -372,7 +357,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		Code:
 			%include "<Your_path_to_AsmFun>/StandardExit/main.asm"
 
-18. _strCapitalize
+17. _strCapitalize
 	Purpose:
                 Changes all the letters in a string to uppercase
         
@@ -380,254 +365,254 @@ Here's the list of all functions and their purpose for your coding pleasure:
                 - rsi as a pointer to a string
         
 	Output: 
-        	- al is modified
+		- al is modified
 
 		- rsi points to the end of the string
 
 		- string is modified if there is at least a one letter
         
 	Dependencies:      
-                Code:	
-                        %include "<Your_path_to_AsmFun>/StrCapitalize/main.asm"
+		Code:	
+			%include "<Your_path_to_AsmFun>/StrCapitalize/main.asm"
 			%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-19. _strLowercase
+18. _strLowercase
         Purpose:
-                Changes all characters in the string to lowercase
+			Changes all characters in the string to lowercase
         
-	Input:
-                - rsi as a pointer to a string
+		Input:
+			- rsi as a pointer to a string
+			
+		Output:
+			- al is modified
+
+			- rsi points to the end of the string
+
+			- string is modified if there is at least one letter
+			
+		Dependencies:
+			Code:
+				%include "<Your_path_to_AsmFun>/StrLowercase/main.asm"
+				%include "<Your_path_to_AsmFun>/Break/main.asm"
+
+19. _power
+		Purpose:
+			Raises integer to the power 
+
+		Input:
+			- rax as an integer
+
+			- rcx as an integer exponential
+
+		Output:
+			- rbx equals to rax before function start
+
+			- rax is raised to the power of rcx
+
+			- rcx equals to 0
+
+		Dependency:
+			Code:
+				%include "<Your_path_to_AsmFun>/Power/main.asm"
+
+20. _stringToInt
+		Purpose:
+			Takes integer from string and puts it into register
+			
+		Input:
+			- rsi as a pointer to string
+			
+		Output:
+
+			- rax is a number being recieved from a string
+
+			- rbx is modified
+
+			- ch equals to 1 if a number is negative else 0
+
+			- cl equals to 0
+
+			- r8 equals to 10
+		
+			- r9 is modified
+
+			- r10b stores the number of digits
+
+			- rdx is modified
+
+			- rsi points to the string
+
+			- rdi points to the place of the
+			string where the program has ended
+			for some reason (e.g. ".", " ", "\0" etc)
+			has ended the execution
+
         
-	Output:
-                - al is modified
+		Dependency:
+			Code:
+				%include "<Your_path_to_AsmFun>/StringToInt/main.asm"	
+				%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-		- rsi points to the end of the string
+21. _factorial
 
-		- string is modified if there is at least one letter
-        
-	Dependencies:
-                Code:
-                        %include "<Your_path_to_AsmFun>/StrLowercase/main.asm"
-                        %include "<Your_path_to_AsmFun>/Break/main.asm"
+		Purpose:
+			Calculates the factorial via cycle
 
-20. _power
-	Purpose:
-		Raises integer to the power 
-	
-	Input:
-		- rax as an integer
+		Input:
+			- rbx as an integer
 
-		- rcx as an integer exponential
-	
-	Output:
-		- rbx equals to rax before function start
+		Output:
+			- rax equals to factorial of rax
 
-		- rax is raised to the power of rcx
+			- rax is -1 if factorial doesn't exist
 
-		- rcx equals to 0
-	
-	Dependency:
-		Code:
-			%include "<Your_path_to_AsmFun>/Power/main.asm"
+		Dependencies:
+			Code:
+				%include "<Your_path_to_AsmFun>/Factorial/main.asm"	
+				%include "<Your_path_to_AsmFun>/Break/main.asm"
+				%include "<Your_path_to_AsmFun>/Negate/main.asm"
 
-21. _stringToInt
-	Purpose:
-    	Takes integer from string and puts it into register
-        
-	Input:
-    	- rsi as a pointer to string
-        
-	Output:
+22. _strLen
+		Purpose:
+			Finds the length of the string except \0 and \n
+		
+		Input:
+			- rsi as a pointer to a string
+		
+		Output:
+			- rcx equals to the length of the string
+		
+			- al is modified
 
-		- rax is a number being recieved from a string
+			- rsi points to the end of the string
+		
+		Dependencies:
+			Code:
+				%include "<Your_path_to_AsmFun>/StrLen/main.asm"
+				%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-		- rbx is modified
-
-		- ch equals to 1 if a number is negative else 0
-
-		- cl equals to 0
-
-		- r8 equals to 10
-	
-		- r9 is modified
-
-		- r10b stores the number of digits
-
-		- rdx is modified
-
-		- rsi points to the string
-
-		- rdi points to the place of the
-   	    string where the program has ended
-	    for some reason (e.g. ".", " ", "\0" etc)
-        has ended the execution
-
-        
-	Dependency:
-                Code:
-                        %include "<Your_path_to_AsmFun>/StringToInt/main.asm"	
-			%include "<Your_path_to_AsmFun>/Break/main.asm"
-
-22. _factorial
-
-	Purpose:
-		Calculates the factorial via cycle
-
-	Input:
-		rbx as an integer
-
-	Output:
-		- rax equals to factorial of rax
-
-		- rax is -1 if factorial doesn't exist
-
-	Dependencies:
-		Code:
-			%include "<Your_path_to_AsmFun>/Factorial/main.asm"	
-			%include "<Your_path_to_AsmFun>/Break/main.asm"
-			%include "<Your_path_to_AsmFun>/Negate/main.asm"
-
-23. _strLen
-	Purpose:
-		Finds the length of the string except \0 and \n
-	
-	Input:
-		- rsi as a pointer to a string
-	
-	Output:
-		- rcx equals to the length of the string
-	
-		- al is modified
-
-		- rsi points to the end of the string
-	
-	Dependencies:
-		Code:
-			%include "<Your_path_to_AsmFun>/StrLen/main.asm"
-			%include "<Your_path_to_AsmFun>/Break/main.asm"
-
-24. _haltMachine
+23. _haltMachine
         Purpose:
 		Halts machine (this means it stops it)
 	
         Input:
-                - nothing
+			- nothing
 
         Output:
-		- if a system commits this function it stops the computer
-		(I used this function in my os, in Linux is doesn't work)
+			- if a system commits this function it stops the computer
+			(I used this function in my os, in Linux is doesn't work)
 	
         Dependencies:
-                Code:
-                        %include "<Your_path_to_AsmFun>/HaltMachine/main.asm"
+			Code:
+				%include "<Your_path_to_AsmFun>/HaltMachine/main.asm"
 
-25. _memclrb
+24. _memclrb
         Purpose:
-                Puts zeros into memory
+			Puts zeros into memory
 
         Input:
-                - rdi as a pointer to memory
+			- rdi as a pointer to memory
 
-		- rcx as amount of bytes to clear
+			as amount of bytes to clear
 
         Output:
-                - al equals to 0
+			- al equals to 0
 
-		- rdi points to the memory + rcx
+			- rdi points to the memory + rcx
 
-		- rcx remains the same
+			- rcx remains the same
+
+        Dependencies:
+			Code:
+				%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
+
+25. _memcpyb
+        Purpose:
+			Loads memory from the source to the destination
+
+        Input:
+            - rsi is a pointer to source
+
+			- rdi is a pointer to the destination
+
+			- rcx is amount of bytes to copy
+
+        Output:
+            - al is modified
+
+			- rsi points to the rsi + rcx
+
+			- rdi points to the rdi + rcx
 
         Dependencies:
                 Code:
-                        %include "<Your_path_to_AsmFun>/Memclrb/main.asm"
+                    %include "<Your_path_to_AsmFun>/Memcpyb/main.asm"
 
-26. _memcpyb
+26. _memcpyw
         Purpose:
-                Loads memory from the source to the destination
+			Loads memory from the source to the destination
 
         Input:
-                - rsi is a pointer to source
+			- rsi is a pointer to source
 
-		- rdi is a pointer to the destination
+			- rdi is a pointer to the destination
 
-		- rcx is amount of bytes to copy
+			- rcx is amount of words to copy
 
         Output:
-                - al is modified
+			- rax is modified
 
-		- rsi points to the rsi + rcx
+			- rsi points to the rsi + rcx
 
-		- rdi points to the rdi + rcx
+			- rdi points to the rdi + rcx
 
         Dependencies:
-                Code:
-                        %include "<Your_path_to_AsmFun>/Memcpyb/main.asm"
+			Code:
+				%include "<Your_path_to_AsmFun>/Memcpyd/main.asm"
 
-27. _memcpyw
+27. _loadIDT
         Purpose:
-                Loads memory from the source to the destination
+			This function is for your operating system development
+			pleasure. This loads the idt table into adress 0x7e00
+			and sets it up so the cpu can access it
 
         Input:
-                - rsi is a pointer to source
-
-                - rdi is a pointer to the destination
-
-                - rcx is amount of words to copy
+			- nothing at all
 
         Output:
-                - rax is modified
+			- rax is modified
 
-                - rsi points to the rsi + rcx
+			- rbx is 0
 
-                - rdi points to the rdi + rcx
+			- rcx is 0
 
-        Dependencies:
-                Code:
-                        %include "<Your_path_to_AsmFun>/Memcpyd/main.asm"
+			- rsi is modified
 
-28. _loadIDT
-        Purpose:
-                This function is for your operating system development
-		pleasure. This loads the idt table into adress 0x7e00
-		and sets it up so the cpu can access it
-
-        Input:
-                - nothing at all
-
-        Output:
-                - rax is modified
-
-		- rbx is 0
-
-		- rcx is 0
-
-		- rsi is modified
-
-		- rdi points to the end of the IDT
+			- rdi points to the end of the IDT
 
         Dependencies:
-                Code:
-                        %include "<Your_path_to_AsmFun>/LoadIDT/main.asm"
-			%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
-			%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
-			%include "<Your_path_to_AsmFunOs>/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
+			Code:
+				%include "<Your_path_to_AsmFun>/LoadIDT/main.asm"
+				%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/IgnoreInterruptHandler/main.asm"
+				%include "<Your_path_to_AsmFunOs>/src/interrupts/interruptServiceRoutines/KeyboardInterruptHandler/main.asm"
+				%include "<Your_path_to_AsmFunOs>/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
 
-29. _chill
-	Purpose:
-		Puts a computer in a waiting mode which means it does nothing
-		but responds to only interrupts
+28. _chill
+		Purpose:
+			Puts a computer in a waiting mode which means it does nothing
+			but responds to only interrupts
 
-	Input:
-		- nothing
+		Input:
+			- nothing
 
-	Output:
-		- nothing
+		Output:
+			- nothing
 
-	Dependencies:
-		Code:
-			%include "<Your_path_to_AsmFun>/Chill/main.asm"
+		Dependencies:
+			Code:
+				%include "<Your_path_to_AsmFun>/Chill/main.asm"
 
-30. _memclrw
+29. _memclrw
         Purpose:
                 Puts zeros into memory
 
@@ -644,68 +629,72 @@ Here's the list of all functions and their purpose for your coding pleasure:
                 - rcx remains the same
 
         Dependencies:
-                Code:
-                        %include "<Your_path_to_AsmFun>/Memclrw/main.asm"
+			Code:
+				%include "<Your_path_to_AsmFun>/Memclrw/main.asm"
 
-31. _memclrq
+30. _memclrq
         Purpose:
-                Puts zeros into memory
+			Puts zeros into memory
 
         Input:
-                - rdi as a pointer to memory
+			- rdi as a pointer to memory
 
-                - rcx as amount of quad words to clear
+			- rcx as amount of quad words to clear
 
         Output:
-                - rax equals to 0 
+			- rax equals to 0 
 
-                - rdi points to the memory + 8 * rcx
+			- rdi points to the memory + 8 * rcx
 
-                - rcx remains the same
+			- rcx remains the same
 
         Dependencies:
-                Code:
-                        %include "<Your_path_to_AsmFun>/Memclrq/main.asm"
+			Code:
+				%include "<Your_path_to_AsmFun>/Memclrq/main.asm"
 
-32. _sleep
-	Purpose:	
-		Waits some amount of time and then returns
-	
-	Input:
-		- rcx as amount of time in milliseconds
-	
-	Output:
-		- rcx equals to 0
-
-	Dependencies:
-		Code:
-			%include "<Your_path_to_AsmFun>/Sleep/main.asm"
-
-33. _strcmp
-	Purpose:
-		Compares two strings and returns: 
-			1) 0 if they are completely equal
-
-			2) < 0 if ascii code of at least one character
-			   of the first string is more than the code
-			   of the respective character of the second string
-	
-			3) else < 0
-
-	Input:
-		- rsi as a pointer to the
-		first string
+31. _sleep
+		Purpose:	
+			Waits some amount of time and then returns
 		
-		- rdi as a pointer to the 
-		second string
+		Input:
+			- rcx as amount of time in milliseconds
+		
+		Output:
+			- rcx equals to 0
 
-	Output:
-		- rax is an answer
+		Dependencies:
+			Code:
+				%include "<Your_path_to_AsmFun>/Sleep/main.asm"
 
-		- bl is modified
+32. _strcmp
+		Purpose:
+			Compares two strings and returns: 
+				1) 0 if they are completely equal
 
-		- rsi points to the end
-		of the first string
+				2) < 0 if ascii code of at least one character
+				of the first string is more than the code
+				of the respective character of the second string
+		
+				3) else < 0
 
-		- rdi points to the end
-		of the second string
+		Input:
+			- rsi as a pointer to the
+			first string
+			
+			- rdi as a pointer to the 
+			second string
+
+		Output:
+			- rax is an answer
+
+			- bl is modified
+
+			- rsi points to the end
+			of the first string
+
+			- rdi points to the end
+			of the second string
+
+		Dependencies:
+			Code:
+				%include "<Your_path_to_AsmFun>/Strcmp/main.asm"

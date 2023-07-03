@@ -6,6 +6,8 @@
 ;
 ;	- rdi as a pointer to destination string
 ;
+;	- rcx as the number base
+;
 ; Output:
 ;	- rax is modified
 ;
@@ -21,7 +23,7 @@ _intToString:
 	;
 	; First things first we need
 	; to check if a number is negative
-	; itoa(number, clock_str, 10)and if it is we put a "-" character 
+	; and if it is we put a "-" character 
 	; to a memory, increment pointer to memory
 	; and negate a number just to get its 
 	; absolute value
@@ -41,7 +43,7 @@ _intToString:
 	; use decimal number system
 	; 
 	mov rdi, temp
-	mov rbx, 10
+	mov rbx, rcx
 	call _assignFlippedIntegerPortion
 
 	;

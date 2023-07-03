@@ -11,7 +11,7 @@
 ;
 ;	- rdi as a pointer to string
 ;
-;	- rbx is a devider
+;	- rcx is a devider
 ;	(for decimal it must be 10)
 ;
 ; Output:
@@ -25,16 +25,16 @@
 ;	- string being pointed to
 ; 	by rdi is modified
 ;
-;	- rbx remains the same
+;	- rcx remains the same
 ;
 _assignFlippedIntegerPortion:
-        xor rdx, rdx
-        div rbx
+	xor rdx, rdx
+	div rcx
 
-	cmp dl, 10
+	cmp dl, 9
 	ja _assignFlippedIntegerPortionElse
 
-      ; _assignFlippedIntegerPortionIf:
+	_assignFlippedIntegerPortionIf:
 		add dl, 48
 		jmp _assignFlippedIntegerPortionAfter
 
@@ -42,8 +42,8 @@ _assignFlippedIntegerPortion:
 		add dl, 55	
 
 	_assignFlippedIntegerPortionAfter:
-        	mov [rdi], dl
-        	inc rdi
-        	cmp rax, 0
-        	jne _assignFlippedIntegerPortion
-        	ret
+		mov [rdi], dl
+		inc rdi
+		cmp rax, 0
+		jne _assignFlippedIntegerPortion
+		ret

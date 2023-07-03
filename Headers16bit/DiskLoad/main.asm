@@ -13,29 +13,54 @@
 ;	- di is modified
 ;
 _diskLoad:
-	mov si, ax
+	;
 	; Store ax in si so later we can recall
-	; how many sectors were request to be read ,
+	; how many sectors were request to be read,
 	; even if it is altered in the meantime
+	;
+	mov si, ax
+
+	;
+	; BIOS read sectors function
+	;
 	mov ah , 0x02
-	; BIOS read sector function
-	mov ch , 0x00
+
+	;
 	; Select cylinder 0
-	mov dh , 0x00
+	;
+	xor ch, ch
+
+	;
 	; Select head 0
+	;
+	xor dh, dh
+
+	;
+	; Select the sector 2
+	;
 	mov cl , 0x02
-	; Start reading from second sector ( i.e.
-	; after the boot sector )
+	
+	;
+	; Start reading
+	;
 	int 0x13
-	; BIOS interrupt
-	jc _diskLoadError	; Jump if error ( i.e. carry flag set )
-	and ax, 0xFF
-	mov di, ax
-	cmp si, di
+
+	;
+	; Jump if error ( i.e. carry flag set )
+	;
+	jc _diskLoadError	
+
+	;
+	; Check the sectors count
+	;
+	xor ah, ah
+	cmp ax, si
 	jne _diskMismatch
 	ret
 
-;display error message
+;
+; Display error message
+;
 _diskLoadError:
 	mov si, diskLoadFailed
 	call _print
