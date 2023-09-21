@@ -48,7 +48,7 @@ _stringToFloat:
 	; will contain the answer. Our first 
 	; mantissa part is already assembled
 	; and it is contained in r11 now so
-	; then all of the mantissa will be 
+	; then all the mantissa will be 
 	; contained in there
 	;
 

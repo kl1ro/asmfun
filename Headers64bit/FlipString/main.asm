@@ -1,43 +1,39 @@
 ;
-; Flips a string
+;	Flips a string
 ;
-; Input: 
-;	- rsi as a pointer to 
-;	  the source string 
+;	Input: 
+;		- rsi as a pointer to the source string 
 ;
-;	- rdi as a pointer to the 
-;	destination string
+;		- rdi as a pointer to the destination string
 ;
-; Output:
-;	- rsi remains the same
+;	Output:
+;		- rax is modified
 ;
-;	- rdi points to the end
-;	of the destination string
+;		- rbx is equal to rsi
 ;
-;	- rbx equals to rsi
+;		- rsi remains the same
 ;
-;	- rax is modified
+;		- rdi points to the end of the destination string
 ;
-;	- source string remains
-;	the same
+;		- source string remains the same
 ;
-;	- destination string is a
-;	flipped source string
+;		- destination string is a flipped source string
 ;
 _flipString:
 	mov rbx, rsi
 
-_flipStringCycle1:
-	inc rsi
-	mov al, [rsi]
-	cmp al, 0
-	jne _flipStringCycle1
+	._flipStringCycle1:
+		inc rsi
+		mov al, [rsi]
+		test al, al
+		jnz ._flipStringCycle1
 
-_flipStringCycle2:
-        dec rsi
-        mov al, [rsi]
-        mov [rdi], al
-        inc rdi
-        cmp rsi, rbx
-        jne _flipStringCycle2
-        ret
+	._flipStringCycle2:
+		dec rsi
+		mov al, [rsi]
+		mov [rdi], al
+		inc rdi
+		cmp rsi, rbx
+		jne ._flipStringCycle2
+
+	ret

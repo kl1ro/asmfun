@@ -1,11 +1,11 @@
 ;
-; Used for jumps from cycles basically
+;	Returns from the function	
 ;
-; Input:
-;	nothing at all
+;	Input:
+;		- return point
 ;
-; Output:
-; 	nothing but returns from function
+;	Output:
+;		- nothing
 ;
 _break:
 	ret

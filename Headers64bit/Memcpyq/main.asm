@@ -1,27 +1,25 @@
 ;
-; This is a function that loads
-; memory from the source to the 
-; destination
+;	Loads memory from the source to the destination
 ;
-; Input:
-;       - rsi is a pointer to source
+;	Input:
+;		- rsi is a pointer to source
 ;
-;       - rdi is a pointer to the destination
+;		- rdi is a pointer to the destination
 ;
-;       - rcx is amount of quadwords to copy
+;		- rcx is amount of quadwords to copy
 ;
-; Output:
-;       - rax is modified
+;	Output:
+;		- rax is modified
 ;
-;       - rsi points to the rsi + rcx
+;		- rsi points to the rsi + rcx
 ;
-;       - rdi points to the rdi + rcx
+;		- rdi points to the rdi + rcx
 ;
 _memcpyq:
-        mov rax, [rsi]
-        mov [rdi], rax
-        add rsi, 8
+	mov rax, [rsi]
+	mov [rdi], rax
+	add rsi, 8
 	add rdi, 8
-        loop _memcpyq
-        ret
+	loop _memcpyq
+	ret
 

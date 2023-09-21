@@ -1,19 +1,19 @@
 ;
-; This is a function that loads
-; memory from the source to the 
-; destination
+;	Loads memory from the source to the destination
 ;
-; Input:
-;	rsi is a pointer to source
-; 	rdi is a pointer to the destination
-;	rcx is amount of bytes to copy
+;	Input:
+;		- rsi is a pointer to source
 ;
-; Output:
-;	- al is modified
+;		- rdi is a pointer to the destination
 ;
-;	- rsi points to the rsi + rcx
+;		- rcx is amount of bytes to copy
 ;
-;	- rdi points to the rdi + rcx
+;	Output:
+;		- al is modified
+;
+;		- rsi points to the rsi + rcx
+;
+;		- rdi points to the rdi + rcx
 ;
 _memcpyb:
 	mov al, [rsi]

@@ -1,17 +1,17 @@
 ;
-;   This function copies the string 
-;   pointed by rsi to rdi
+;	Copies the string pointed by rsi to rdi
 ;
-;   Input:
-;       - rsi as pointer to memory
+;	Input:
+;		- rsi as pointer to memory
 ;
-;       - rdi as pointer to memory
+;		- rdi as pointer to memory
 ;
+;	Output:
+;		- al is modified
 ;
-;   Output:
-;       - rsi is modified
+;		- rsi is modified
 ;
-;       - rdi is modified
+;		- rdi is modified
 ;
 _strcpy:
     mov al, [rsi]

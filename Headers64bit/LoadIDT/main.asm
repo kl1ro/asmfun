@@ -1,27 +1,29 @@
-IDT_OFFSET equ 0x0
-
 ;
-; This function is for your operating system development
-; pleasure. This loads the idt table into address 0x0
-; and sets it up so the cpu can access it.
+;	This function loads the Interrupt Descriptor Table into address 0x0
+;	and sets it up so the cpu can access it.
 ;
-; Input:
-;	- nothing at all
+;	Input:
+;		- nothing
 ;
-; Output:
-;	- rax is modified
+;	Output:
+;		- rax is modified
 ;
-;	- rbx is 0
+;		- rbx is equal to 0
 ;
-;	- rcx is 0
+;		- rcx is equal to 0
 ;
-;	- rsi is modified
+;		- rsi is modified
 ;
-;   - rdi points to the end of the IDT
+;		- rdi points to the end of the IDT
 ;
 _loadIDT:
 	;
-	; Division by 0 fault (id 0)
+	;	Useful constants
+	;
+	IDT_OFFSET equ 0x0
+
+	;
+	;	Division by 0 fault (id 0)
 	;
 	mov rsi, _divisionBy0Handler
 	mov rdi, IDTInterruptGatePattern
@@ -31,12 +33,12 @@ _loadIDT:
 	call _loadIDTCycle
 	
 	;
-	; Empty idt gates	
+	;	Empty idt gates	
 	;
 	add rdi, 5 * 16
 
 	;
-	; Invalid opcode fault (id 6)
+	;	Invalid opcode fault (id 6)
 	;
 	mov rbx, rdi
 	mov rsi, _invalidOpcodeInterruptHandler
@@ -47,7 +49,7 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Device not available fault (id 7)
+	;	Device not available fault (id 7)
 	;
 	mov rbx, rdi
 	mov rsi, _deviceNotAvailableInterruptHandler
@@ -58,12 +60,12 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Empty idt gates	
+	;	Empty idt gates	
 	;
 	add rdi, 2 * 16
 
 	;
-	; Invalid TSS fault (id 10)
+	;	Invalid TSS fault (id 10)
 	;
 	mov rbx, rdi
 	mov rsi, _invalidTSSInterruptHandler
@@ -74,7 +76,7 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Segment not present fault (id 11)
+	;	Segment not present fault (id 11)
 	;
 	mov rbx, rdi
 	mov rsi, _segmentNotPresentInterruptHandler
@@ -85,7 +87,7 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Stack-segment fault (id 12)
+	;	Stack-segment fault (id 12)
 	;
 	mov rbx, rdi
 	mov rsi, _stackSegmentFaultInterruptHandler
@@ -96,7 +98,7 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; General protection fault (id 13)
+	;	General protection fault (id 13)
 	;
 	mov rbx, rdi
 	mov rsi, _generalProtectionFaultInterruptHandler
@@ -107,7 +109,7 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Page fault (id 14)
+	;	Page fault (id 14)
 	;
 	mov rbx, rdi
 	mov rsi, _pageFaultInterruptHandler
@@ -118,12 +120,12 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Empty idt gate	
+	;	Empty idt gate	
 	;
 	add rdi, 16
 
 	;
-	; x87 Floating-point exception (id 16)	
+	;	x87 Floating-point exception (id 16)	
 	;
 	mov rbx, rdi
 	mov rsi, _floatingPointExceptionHandler
@@ -134,12 +136,12 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Empty idt gates	
+	;	Empty idt gates	
 	;
 	add rdi, 15 * 16
 
 	;
-	; Clock interrupt handler idt gate (id 32)	
+	;	Clock interrupt handler idt gate (id 32)	
 	;
 	mov rbx, rdi
 	mov rsi, _clockInterruptHandler
@@ -150,7 +152,7 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;
-	; Keyboard interrupt handler (id 33)
+	;	Keyboard interrupt handler (id 33)
 	;
 	mov rbx, rdi
 	mov rsi, _keyboardInterruptHandler
@@ -161,12 +163,12 @@ _loadIDT:
 	call _loadIDTCycle
 
 	;	
-	; Empty idt gates
+	;	Empty idt gates
 	;	
 	add rdi, 94 * 16
 
 	;
-	; System call interrupt (id 128)
+	;	System call interrupt (id 128)
 	;	
 	mov rbx, rdi
 	mov rsi, _syscallHandler
@@ -177,13 +179,13 @@ _loadIDT:
 	call _loadIDTCycle	
 	
 	;	
-	; Then go 127 empty idt gates
+	;	Then go 127 empty idt gates
 	;		
-	; ...
+	;	...
 	;
 
 	;
-	; Set up the PIC
+	;	Set up the PIC
 	;
 	mov al, 0x11
 	out 0x20, al
@@ -204,31 +206,30 @@ _loadIDT:
 	out 0xa1, al
 
 	;	
-	; Load prepared IDT
-	; 
+	;	Load prepared IDT
+	;	
 	lidt [IDTPointer]
 	
 	;
-	; Set interrupt flag
+	;	Set interrupt flag
 	;
 	sti
 	ret	
 
 ;
-; Loads IDT vectors into IDT
+;	Loads IDT vectors into IDT
 ;
-; Input:
-;	- rdi as a pointer to memory
+;	Input:
+;		- rdi as a pointer to memory
 ;
-;	- rbx as a counter for cycle
+;		- rbx as a counter for cycle
 ;
-; Output:
-;	- rbx equals to 0
+;	Output:
+;		- rbx is equal to 0
 ;
-;	- rcx is 2
+;		- rcx is equal to 2
 ;
-;	- rsi points to the end of the 
-;	IDTInterruptGatePattern
+;		- rsi points to the end of the IDTInterruptGatePattern
 ;
 _loadIDTCycle:
 	dec rbx	
@@ -240,34 +241,30 @@ _loadIDTCycle:
 	ret
 
 ;
-; Defines idt interrupt gate.
-; In other words it copies a pointer
-; to an interrupt service routine to 
-; the already prepared interrupt idt gate
+;	Defines idt interrupt gate. In other words it copies a pointer
+;	to an interrupt service routine to the already prepared interrupt idt gate
 ;
-; Input:
-;       - rsi as a pointer to an interrupt handler
-;       (interrupt service routine)
+;	Input:
+;	      - rsi as a pointer to an interrupt handler (interrupt service routine)
 ;
-;       - rdi as a pointer to an interrupt 
-;       gate we define
+;	      - rdi as a pointer to an interrupt gate we define
 ;
-; Output:
-;       - rdi is modified
+;	Output:
+;		- rdi is modified
 ;
-;    	- rsi shifted by 16 bit to the right
+;	   	- rsi shifted by 16 bit to the right
 ;
 ;	    - rax is modified
 ;
 _defineIDTInterruptGate:
 	;
-	; Offset (0 - 15)
+	;	Offset (0 - 15)
 	;
 	mov [rdi], si
 	add rdi, 6
 
 	;
-	; Offset (48 - 63)
+	;	Offset (48 - 63)
 	;
 	mov eax, esi
 	shr eax, 16
@@ -275,7 +272,7 @@ _defineIDTInterruptGate:
 	add rdi, 2
 
 	;
-	; Offset (64 - 95)
+	;	Offset (64 - 95)
 	;
 	shr rsi, 32
 	mov [rdi], esi

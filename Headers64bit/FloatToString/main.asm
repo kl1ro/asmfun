@@ -1,4 +1,6 @@
 ;
+;	Working on it. Don't use!
+;
 ; For this conversion I use that formula:
 ; number = (1 + mantissa) * 2 ^ exponent
 ;

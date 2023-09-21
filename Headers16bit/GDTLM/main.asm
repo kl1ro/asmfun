@@ -1,3 +1,7 @@
+;
+;	This is the pointer to Global Descriptor Table 
+;	for switching to Long Mode. 
+;
 GDTLM:
 	.Null: equ $ - GDTLM
 		dq 0

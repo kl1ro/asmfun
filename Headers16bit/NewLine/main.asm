@@ -1,24 +1,24 @@
-bits 16
-
 ;
-; Puts the cursor on the screen to
-; the next line
+;	Puts the screen cursor to the next line
+;	utilizing the bios interrupt 0x10 
 ;
-; Input: 
-;	- dh is a current page
+;	Input: 
+;		- dh is a current page
 ;
-; Output:
-;	- ah equals to 02h
+;	Output:
+;		- ah is equal to 0x2
 ;
-;	- dl equals to 0
+;		- dl is equal to 0
 ;
-;	- dh is incremented
+;		- dh is incremented
+;
+;       Bios also can modify registers
 ;
 _newLine:	
-	mov ah, 03h
-	int 10h
-	mov ah, 02h
+	mov ah, 0x3
+	int 0x10
+	mov ah, 0x2
 	xor dl, dl
 	inc dh
-	int 10h
+	int 0x10
 	ret

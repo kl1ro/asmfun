@@ -1,23 +1,23 @@
 ;
-; For this conversion I use that formula:
-; number = (1 + mantissa) * 2 ^ exponent
+;	Working on it. Don't use!
+;
+;	For this conversion I use that formula:
+;	number = (1 + mantissa) * 2 ^ exponent
 ;
 _doubleToString:
 
-section .bss
     .ans resb 8
 	.ans2 resb 64
 
-section .text
 	fstp qword [.ans]
 	
-	;   
-    ; Get the number
-    ;   
+	;	  
+    ;	Get the number
+    ;	  
     mov rax, [.ans]
 
 	;
-	; Check sign
+	;	Check sign
 	;
 	bt rax, 63
 	jnc ._ifNotMinus
@@ -29,7 +29,7 @@ section .text
 	._ifNotMinus:
 
 	;
-	; Get the exponent
+	;	Get the exponent
 	;
     mov rbx, 0x7FF0000000000000
     and rbx, rax 
@@ -42,21 +42,21 @@ section .text
 	call _print
 	jmp _exit
 
-    ;   
-    ; Get mantissa
-    ;   
+    ;	  
+    ;	Get mantissa
+    ;	  
     mov rcx, 0xFFFFFFFFFFFFF
     and rcx, rax 
 
 	;
-	; This is 1 + mantissa
+	;	This is 1 + mantissa
 	;
 	xor rdx, rdx
 	mov rax, rcx
     add rax, 0x1000000000000
 
 	;
-    ; Calculating 2 ^ exp
+    ;	Calculating 2 ^ exp
     ;
     mov rcx, rbx
     call _twoInThePowerOfN
@@ -65,21 +65,21 @@ section .text
     div rbx 
 
 	;
-	; Convert the integer portion 
-	; to string and save regs
+	;	Convert the integer portion 
+	;	to string and save regs
 	;
     mov r9, rdx 
     mov r10, rbx 
     call _intToString
 
 	;
-	; Add "." character
+	;	Add "." character
 	;
     mov [rdi], byte 46
     inc rdi
 
 	;
-	; Convert the floating portion
+	;	Convert the floating portion
 	;
 	mov rcx, 10
     mov rdx, r9
@@ -89,14 +89,14 @@ section .text
    	ret
 
 ;
-; Input:
-;   - rcx as a counter
+;	Input:
+;	  - rcx as a counter
 ;
-;   - rbx as a devider
+;	  - rbx as a devider
 ;
-;   - rdx as a remainder
+;	  - rdx as a remainder
 ;
-;   - r8 as 10
+;	  - r8 as 10
 ;
 _assignFloatingPortion:
     mov rax, rdx
@@ -112,7 +112,7 @@ _assignFloatingPortion:
     ret
 
 ;
-; Multiply with 2 ^ exp
+;	Multiply with 2 ^ exp
 ;
 _twoInThePowerOfN:
     test rcx, rcx

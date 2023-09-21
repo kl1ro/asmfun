@@ -1,27 +1,22 @@
 ;
-; This takes a string from a keyboard enter
-; and puts it into ram
+;	Get's the user's input and puts it into a string
 ;
-; Input:
-;	- rsi as a pointer to memory
+;	Input:
+;		- rsi as a pointer to memory
 ;	
-;	- rdx as a maximum amount of characters 
-;	in a string	
+;		- rdx as a maximum amount of characters in a string	
 ;
-; Output:
-;	- string being pointed by rsi
-;	is modified
+;	Output:
+;		- string being pointed by rsi is modified
 ;
-;	- rax equals to the length of a string with \0 character
+;		- rax is modified
 ;
-;	- rdx remains the same
+;		- rdi is modified
 ;
-;	- rsi is modified
-;
-;	- r11 is modified
+;		- operating system also can modify registers
 ;
 _input:
-        xor rax, rax
+    xor rax, rax
 	xor rdi, rdi
-        syscall
-        ret
+	syscall
+	ret

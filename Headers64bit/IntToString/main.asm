@@ -1,74 +1,88 @@
 ;
-; Converts int value to a string
+;	Converts an integer value to a string
 ;
-; Input: 
-;	- rax as an integer
+;	Input: 
+;		- rax as an integer
 ;
-;	- rdi as a pointer to destination string
+;		- rdi as a pointer to destination string
 ;
-;	- rcx as the number base
+;		- rcx as the number base
 ;
-; Output:
-;	- rax is modified
+;	Output:
+;		- rax is modified
+;		
+;		- rbx is modified
 ;
-;	- rcx is modified
+;		- rcx is modified
+;		
+;		- rdx is modified
 ;
-;	- rdx is modified
+;		- rsi is modified
 ;
-;	- rsi is modified
-;
-;	- rdi points to the end of the string
+;		- rdi is modified
 ;
 _intToString:
 	;
-	; First things first we need
-	; to check if a number is negative
-	; and if it is we put a "-" character 
-	; to a memory, increment pointer to memory
-	; and negate a number just to get its 
-	; absolute value
+	;	Temporary string to store flipped number
 	;
-	call _minusCheck
+	.temp times 20 db 0
 
 	;
-	; Then we need to save pointer to memory
-	; for further usage
+	;	First things first we need
+	;	to check if the number is negative
+	; 
+    test rax, rax
+    jns ._notNegative
+
+    ;
+    ;   If rax is negative we put a "-" character 
+	;   to string, increment the pointer
+	;   and negate the number to get its 
+	;   absolute value
+    ;
+    mov bl, 45
+	mov [rdi], bl
+	inc rdi
+    neg rax
+
+    ._notNegative:
+
+	;
+	;	Then we need to save pointer to memory
+	;	for further usage
 	;
 	mov rsi, rdi
 
 	;
-	; Put to rdi a pointer to temp
-	; to form a string value of a number
-	; being in rax, rbx is 10 because we
-	; use decimal number system
+	;	Get the flipped number
 	; 
-	mov rdi, temp
+	mov rdi, .temp
 	mov rbx, rcx
 	call _assignFlippedIntegerPortion
 
 	;
-	; Then we need to put our decimal value
-	; to a string and thus we restore the old rdi value
+	;	Then we need to put our decimal value
+	;	to a string and thus we restore the old rdi value
 	;
 	mov rdi, rsi
-	mov rsi, temp
+	mov rsi, .temp
     call _flipString
 
 	;
-	; Save rdi value again
+	;	Save rdi value again
 	;
 	mov rsi, rdi
 
 	;
-	; And finally we clear temp memory
-	; and return
+	;	And finally we clear temp memory
+	;	and return
 	;
 	mov rcx, 19
-	mov rdi, temp
+	mov rdi, .temp
 	call _memclrb
 
 	;
-	; Restore rdi value
+	;	Restore rdi value
 	;
 	mov rdi, rsi
     ret

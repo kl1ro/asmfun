@@ -1,2 +1,0 @@
-_interruptBreak:
-	iret

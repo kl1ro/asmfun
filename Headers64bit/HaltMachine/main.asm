@@ -1,7 +1,12 @@
 ;
-; This function hults machine
-; (meaning it stops it)
+;	Halts the machine
+;
+;	Input:
+;		- nothing
+;
+;	Output:
+;		- nothing
 ;
 _haltMachine:
-	cli 		; This way now we can't go out of hlt
+	cli
 	hlt

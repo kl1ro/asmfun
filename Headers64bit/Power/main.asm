@@ -1,18 +1,17 @@
 ;
-; Raises an integer to the power
+;	Raises an integer to the power of input
 ;
-; Input:
-;	- rax as an integer
+;	Input:
+;		- rax as an integer
 ;
-;	- rcx as integer exponential
+;		- rcx as integer exponential
 ;
-; Output:
+;	Output:
+;		- rbx is equal to rax at the start point
 ;
-;	- rbx equals to rax at the start point
+;		- rax is raised to the power of rcx
 ;
-;	- rax is raised to the power of rcx
-;
-;	- rcx equals to 0
+;		- rcx is equal to 0
 ;
 _power:
 	mov rbx, rax
@@ -20,7 +19,8 @@ _power:
 	test rcx, rcx
 	jz _break
 
-_powerCycle:	
-	mul ebx
-	loop _powerCycle
+	._powerCycle:	
+		mul ebx
+		loop ._powerCycle
+	
 	ret

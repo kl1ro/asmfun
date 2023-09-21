@@ -1,21 +1,21 @@
 ;
-; Puts zeros into memory
+;	Puts zeros into memory
 ;
-; Input:
-;       - rdi as a pointer to memory
+;	Input:
+;		- rdi as a pointer to memory
 ;
-;       - rcx as amount of bytes to clear
+;		- rcx as amount of bytes to clear
 ;
-; Output:
-;       - ax equals to 0
+;	Output:
+;		- ax is equal to 0
 ;
-;       - rdi points to the memory + rcx
+;		- rdi points to the memory + rcx
 ;
-;       - rcx remains the same
+;		- rcx remains the same
 ;
 _memclrw:
-       	xor ax, ax
-        mov [rdi], ax
-        add rdi, 2 
-        loop _memclrw
-        ret
+	xor ax, ax
+	mov [rdi], ax
+	add rdi, 2 
+	loop _memclrw
+	ret
