@@ -42,7 +42,7 @@ Here's a list of 16-bit asm functions for your system development pleasure:
 		Dependencies:
 			%include "<Your_path_to_AsmFun>/Headers16bit/GDTLM/main.asm"
 
-7. _newLine:
+3. _newLine:
 	Purpose:
 		Moves the screen cursor to the next line utilizing the bios interrupt 0x10.
 
@@ -61,7 +61,7 @@ Here's a list of 16-bit asm functions for your system development pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Headers16bit/NewLine/main.asm"
 
-8. _print:
+4. _print:
 	Purpose:
 		Prints a line to the screen
 
@@ -78,7 +78,7 @@ Here's a list of 16-bit asm functions for your system development pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Headers16bit/Print/main.asm"
 
-9. _switchToLM
+5. _switchToLM
         Purpose:
             Prepares system to switch to Long Mode and makes the switch.
 
@@ -109,7 +109,7 @@ Here's a list of 16-bit asm functions for your system development pleasure:
         Dependencies:
             %include "<Your_path_to_AsmFun>/Headers16bit/SwitchToLM/main.asm"
 
-11. _waitForKeyAndReboot:
+6. _waitForKeyAndReboot:
 	Purpose:
 		Waits for user key enter and reboots the system
 

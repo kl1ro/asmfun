@@ -4,7 +4,7 @@ AsmFun provides assembler functions for more convinient coding in nasm.
 
 Here's the list of all functions and their purpose for your coding pleasure:
 
-4. _assignFlippedIntegerPortion
+1. _assignFlippedIntegerPortion
 	Purpose:
 		Makes a string that is the flipped integer portion of a number in rax.
 		Serves for the function _intToString. It also can be used for 
@@ -32,7 +32,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
         %include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
 
-5. _break
+2. _break
 	Purpose:
 		Returns from the function
 
@@ -45,7 +45,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-28. _chill
+3. _chill
 	Purpose:
 		Puts a computer into a waiting state. The cpu now only 
 		responds to interrupts
@@ -59,10 +59,10 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Chill/main.asm"
 
-45. _doubleToString
+4. _doubleToString
 	--- Working on it. Don't use! ---
 
-16. _exit
+5. _exit
 	Purpose:
 		Exits from the user program utlizing the syscall	
 	
@@ -75,7 +75,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependency:
 		%include "<Your_path_to_AsmFun>/Exit/main.asm"
 
-21. _factorial
+6. _factorial
 	Purpose:
 		Calculates the factorial using a cycle
 
@@ -91,7 +91,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Factorial/main.asm"	
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-6. _flipString
+7. _flipString
 	Purpose:
 		This function takes the content of a string,
 		flips it and puts it into the string pointer.
@@ -117,13 +117,13 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/FlipTemp/main.asm"
 
-7. _floatToString
+8. _floatToString
 	--- Working on it. Don't use! ---
 
-8. _getDebugString
+9. _getDebugString
 	--- Working on it. Don't use! ---
 
-23. _haltMachine
+10. _haltMachine
 	Purpose:
 		Halts the machine
 
@@ -187,7 +187,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/FlipString/main.asm"
 		%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 
-27. _loadIDT
+13. _loadIDT
 	Purpose:
 		This function is for your operating system development
 		pleasure. It loads the Interrupt Descriptor Table into address 0x0
@@ -223,7 +223,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_Oasis>/src/interrupts/interruptServiceRoutines/SyscallHandler/main.asm"
 		%include "<Your_path_to_Oasis>/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
 			
-30. _memclrb
+14. _memclrb
 	Purpose:
 		Puts zeros into memory
 
@@ -242,7 +242,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 
-30. _memclrq
+15. _memclrq
 	Purpose:
 		Puts zeros into memory
 
@@ -261,7 +261,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Memclrq/main.asm"
 
-29. _memclrw
+16. _memclrw
 	Purpose:
 		Puts zeros into memory
 
@@ -280,7 +280,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Memclrw/main.asm"
 
-30. _memcmp
+17. _memcmp
 	Purpose:
 		Compares two memory parts and returns:
 			- 0 if they are equal
@@ -311,7 +311,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Memcmp/main.asm"	
 
-25. _memcpyb
+18. _memcpyb
 	Purpose:
 		Loads memory from the source to the destination
 
@@ -332,7 +332,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Memcpyb/main.asm"
 
-10. _memcpyq
+19. _memcpyq
 	Purpose:
 		Loads memory from the source to the destination
 
@@ -353,7 +353,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Memcpyq/main.asm"
 
-26. _memcpyw
+20. _memcpyw
 	Purpose:
 		Loads memory from the source to the destination
 
@@ -374,7 +374,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Memcpyd/main.asm"
 
-16. _popa
+21. _popa
 	Purpose:
 		Pops all the general cpu registers from the stack
 
@@ -417,7 +417,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Popa/main.asm"
 
-19. _power
+22. _power
 		Purpose:
 			Raises integer to the power of input
 
@@ -436,7 +436,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		Dependency:
 			%include "<Your_path_to_AsmFun>/Power/main.asm"
 
-14. _print
+23. _print
 	Purpose:
 		Prints a string to the screen using system call
 
@@ -459,7 +459,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependency:	
 		%include "<Your_path_to_AsmFun>/Print/main.asm"
 
-16. _pusha
+24. _pusha
 	Purpose:
 		Pushes all the general cpu registers to the stack
 
@@ -502,7 +502,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Pusha/main.asm"
 
-32. _strcmp
+25. _strcmp
 	Purpose:
 		Compares two strings and returns: 
 			- 0 if they are completely equal
@@ -529,7 +529,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Strcmp/main.asm"
 
-6. _strcpy
+26. _strcpy
 	Purpose:
 		Copies the string pointed by rsi to rdi	
 
@@ -548,10 +548,10 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/Strcpy/main.asm"
 	
-7. _stringToFloat
+27. _stringToFloat
 	--- Working on it. Don't use!
 
-20. _stringToInt
+28. _stringToInt
 	Purpose:
 		Takes an integer from a string and puts it into rax
 		
@@ -584,7 +584,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/StringToInt/main.asm"	
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-22. _strLen
+29. _strLen
 	Purpose:
 		Finds the length of the string
 	
@@ -602,7 +602,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/StrLen/main.asm"
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-62. _switchToUserMode:
+30. _switchToUserMode:
 	Purpose:
 		Switches the system from ring 0 to ring 3	
 
@@ -623,7 +623,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	Dependencies:
 		%include "<Your_path_to_AsmFun>/SwitchToUserMode/main.asm"
 
-18. _toLower
+31. _toLower
 	Purpose:
 		Changes all characters in the string to lowercase
 	
@@ -641,7 +641,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/ToLower/main.asm"
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
-17. _toUpper
+32. _toUpper
 	Purpose:
 		Changes all the letters in a string to uppercase
 	
