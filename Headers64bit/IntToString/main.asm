@@ -1,4 +1,9 @@
 ;
+;	Temporary string to store flipped number
+;
+temp times 20 db 0
+
+;
 ;	Converts an integer value to a string
 ;
 ;	Input: 
@@ -22,11 +27,6 @@
 ;		- rdi is modified
 ;
 _intToString:
-	;
-	;	Temporary string to store flipped number
-	;
-	.temp times 20 db 0
-
 	;
 	;	First things first we need
 	;	to check if the number is negative
@@ -56,7 +56,7 @@ _intToString:
 	;
 	;	Get the flipped number
 	; 
-	mov rdi, .temp
+	mov rdi, temp
 	mov rbx, rcx
 	call _assignFlippedIntegerPortion
 
@@ -65,7 +65,7 @@ _intToString:
 	;	to a string and thus we restore the old rdi value
 	;
 	mov rdi, rsi
-	mov rsi, .temp
+	mov rsi, temp
     call _flipString
 
 	;
@@ -78,7 +78,7 @@ _intToString:
 	;	and return
 	;
 	mov rcx, 19
-	mov rdi, .temp
+	mov rdi, temp
 	call _memclrb
 
 	;

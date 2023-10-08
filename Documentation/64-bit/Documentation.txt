@@ -5,6 +5,7 @@ AsmFun provides assembler functions for more convinient coding in nasm.
 Here's the list of all functions and their purpose for your coding pleasure:
 
 1. _assignFlippedIntegerPortion
+
 	Purpose:
 		Makes a string that is the flipped integer portion of a number in rax.
 		Serves for the function _intToString. It also can be used for 
@@ -19,7 +20,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		- rbx is a devider (for decimal it must be 10)
 
 	Output:
-       	- rdx is modified
+		- rdx is modified
 	
 		- rdi points to the end of the destination string
 	
@@ -33,6 +34,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
         %include "<Your_path_to_AsmFun>/AssignFlippedIntegerPortion/main.asm"
 
 2. _break
+
 	Purpose:
 		Returns from the function
 
@@ -46,6 +48,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
 3. _chill
+
 	Purpose:
 		Puts a computer into a waiting state. The cpu now only 
 		responds to interrupts
@@ -63,6 +66,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	--- Working on it. Don't use! ---
 
 5. _exit
+
 	Purpose:
 		Exits from the user program utlizing the syscall	
 	
@@ -76,6 +80,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Exit/main.asm"
 
 6. _factorial
+
 	Purpose:
 		Calculates the factorial using a cycle
 
@@ -92,6 +97,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
 7. _flipString
+
 	Purpose:
 		This function takes the content of a string,
 		flips it and puts it into the string pointer.
@@ -124,6 +130,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	--- Working on it. Don't use! ---
 
 10. _haltMachine
+
 	Purpose:
 		Halts the machine
 
@@ -137,6 +144,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/HaltMachine/main.asm"
 
 11. _input
+
 	Purpose:
 		Get's the user's input and puts it into a string
 
@@ -158,6 +166,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Input/main.asm"	
 
 12. _intToString
+
 	Purpose:
 		Converts an integer value to a string
 
@@ -188,6 +197,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 
 13. _loadIDT
+
 	Purpose:
 		This function is for your operating system development
 		pleasure. It loads the Interrupt Descriptor Table into address 0x0
@@ -224,6 +234,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_Oasis>/src/interrupts/resources/IDTInterruptGatePattern/main.asm"
 			
 14. _memclrb
+
 	Purpose:
 		Puts zeros into memory
 
@@ -243,6 +254,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memclrb/main.asm"
 
 15. _memclrq
+
 	Purpose:
 		Puts zeros into memory
 
@@ -262,6 +274,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memclrq/main.asm"
 
 16. _memclrw
+
 	Purpose:
 		Puts zeros into memory
 
@@ -281,6 +294,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memclrw/main.asm"
 
 17. _memcmp
+
 	Purpose:
 		Compares two memory parts and returns:
 			- 0 if they are equal
@@ -312,6 +326,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memcmp/main.asm"	
 
 18. _memcpyb
+
 	Purpose:
 		Loads memory from the source to the destination
 
@@ -333,6 +348,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memcpyb/main.asm"
 
 19. _memcpyq
+
 	Purpose:
 		Loads memory from the source to the destination
 
@@ -354,6 +370,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memcpyq/main.asm"
 
 20. _memcpyw
+
 	Purpose:
 		Loads memory from the source to the destination
 
@@ -375,6 +392,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Memcpyd/main.asm"
 
 21. _popa
+
 	Purpose:
 		Pops all the general cpu registers from the stack
 
@@ -418,25 +436,27 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Popa/main.asm"
 
 22. _power
-		Purpose:
-			Raises integer to the power of input
 
-		Input:
-			- rax as an integer
+	Purpose:
+		Raises integer to the power of input
 
-			- rcx as an integer exponential
+	Input:
+		- rax as an integer
 
-		Output:
-			- rbx is equal to rax before function start
+		- rcx as an integer exponential
 
-			- rax is raised to the power of rcx
+	Output:
+		- rbx is equal to rax before function start
 
-			- rcx is equal to 0
+		- rax is raised to the power of rcx
 
-		Dependency:
-			%include "<Your_path_to_AsmFun>/Power/main.asm"
+		- rcx is equal to 0
+
+	Dependency:
+		%include "<Your_path_to_AsmFun>/Power/main.asm"
 
 23. _print
+
 	Purpose:
 		Prints a string to the screen using system call
 
@@ -460,6 +480,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Print/main.asm"
 
 24. _pusha
+
 	Purpose:
 		Pushes all the general cpu registers to the stack
 
@@ -503,6 +524,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Pusha/main.asm"
 
 25. _strcmp
+
 	Purpose:
 		Compares two strings and returns: 
 			- 0 if they are completely equal
@@ -530,6 +552,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Strcmp/main.asm"
 
 26. _strcpy
+
 	Purpose:
 		Copies the string pointed by rsi to rdi	
 
@@ -552,6 +575,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 	--- Working on it. Don't use!
 
 28. _stringToInt
+
 	Purpose:
 		Takes an integer from a string and puts it into rax
 		
@@ -585,6 +609,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
 29. _strLen
+
 	Purpose:
 		Finds the length of the string
 	
@@ -603,6 +628,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
 30. _switchToUserMode:
+
 	Purpose:
 		Switches the system from ring 0 to ring 3	
 
@@ -624,6 +650,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/SwitchToUserMode/main.asm"
 
 31. _toLower
+
 	Purpose:
 		Changes all characters in the string to lowercase
 	
@@ -642,6 +669,7 @@ Here's the list of all functions and their purpose for your coding pleasure:
 		%include "<Your_path_to_AsmFun>/Break/main.asm"
 
 32. _toUpper
+
 	Purpose:
 		Changes all the letters in a string to uppercase
 	
