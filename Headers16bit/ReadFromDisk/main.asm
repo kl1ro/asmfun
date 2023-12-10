@@ -31,9 +31,8 @@ readFromDiskMismatch db "Disk sectors mismatch! ", 0
 ;
 _readFromDisk:
 	;
-	;	Store ax in si so later we can recall
-	;	how many sectors were request to be read,
-	;	even if it is altered in the meantime
+	;	Store ax in si so later we can recall how many sectors were 
+	;	request to be read, even if it is altered in the meantime
 	;
 	mov si, ax
 
@@ -68,7 +67,7 @@ _readFromDisk:
 	jnc ._loadSuccess
 
 	;
-	;	Print load error message
+	;	Print disk load error message
 	;
     mov si, readFromDiskFailed
 	call _print
